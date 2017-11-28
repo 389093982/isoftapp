@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../IUIP/.idea/IUIP.iml" filepath="$PROJECT_DIR$/../IUIP/.idea/IUIP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Timer.iml" filepath="$PROJECT_DIR$/.idea/Timer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../iuipcore/.idea/iuipcore.iml" filepath="$PROJECT_DIR$/../iuipcore/.idea/iuipcore.iml" />
+    </modules>
+  </component>
+</project>

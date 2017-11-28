@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.heading,.data_content,.footing{
+    margin: 0 auto;
+}
+
+.footing{
+    height: 500px;
+    background-color: #00CC66;
+    margin-top:50px;
+}
+
+.heading,.data_content,.footing{
+    width: 100%;
+}
+
+.main{
+    width: 100%;
+}

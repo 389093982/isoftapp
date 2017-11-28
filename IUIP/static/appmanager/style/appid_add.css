@@ -1,0 +1,7 @@
+.errorlist li{
+    list-style:none;
+    color:red;
+    float:right;
+    font-size:14px;
+    line-height:0px;
+}

@@ -1,0 +1,9 @@
+.main{
+    background-color: #CCFFCC;
+}
+
+.errorlist li{
+    list-style:none;
+    font-size:14px;
+    line-height:0px;
+}
