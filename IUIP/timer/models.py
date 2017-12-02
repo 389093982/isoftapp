@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from django.contrib import admin
 from django.db import models
 
 
@@ -87,3 +87,63 @@ class TimerIntgFieldMapping(models.Model):
 
     class Meta:
         db_table = 'timer_field_mapping_t'
+
+
+class TimerLastRunLog(models.Model):
+    job_id = models.CharField(max_length=100)
+    task_type = models.CharField(max_length=100)
+    task_name = models.CharField(max_length=100)
+    status = models.CharField(max_length=50)
+    destination = models.CharField(max_length=50, blank=True, null=True)
+    message = models.CharField(max_length=400, blank=True, null=True)
+    detail = models.TextField(blank=True, null=True)
+    created_by = models.CharField(max_length=30)
+    created_date = models.DateTimeField(auto_now_add=True)
+    last_updated_by = models.CharField(max_length=30)
+    last_updated_date = models.DateTimeField(auto_now=True)
+
+
+class TimerRunLog(models.Model):
+    job_id = models.CharField(max_length=100)
+    task_type = models.CharField(max_length=100)
+    task_name = models.CharField(max_length=100)
+    status = models.CharField(max_length=50)
+    destination = models.CharField(max_length=50, blank=True, null=True)
+    message = models.CharField(max_length=400, blank=True, null=True)
+    detail = models.TextField(blank=True, null=True)
+    created_by = models.CharField(max_length=30)
+    created_date = models.DateTimeField(auto_now_add=True)
+    last_updated_by = models.CharField(max_length=30)
+    last_updated_date = models.DateTimeField(auto_now=True)
+
+
+class TimerRunDetail(models.Model):
+    job_id = models.CharField(max_length=100)
+    task_type = models.CharField(max_length=100)
+    task_name = models.CharField(max_length=100)
+    operation = models.CharField(max_length=50)
+    status = models.CharField(max_length=50)
+    destination = models.CharField(max_length=50, blank=True, null=True)
+    message = models.CharField(max_length=400, blank=True, null=True)
+    detail = models.TextField(blank=True, null=True)
+    created_by = models.CharField(max_length=30)
+    created_date = models.DateTimeField(auto_now_add=True)
+    last_updated_by = models.CharField(max_length=30)
+    last_updated_date = models.DateTimeField(auto_now=True)
+
+
+class TimerLastRunLogAdmin(admin.ModelAdmin):
+    list_display = ('job_id', 'task_type', 'task_name', 'status', 'destination')
+
+
+class TimerRunLogAdmin(admin.ModelAdmin):
+    list_display = ('job_id', 'task_type', 'task_name', 'status', 'destination')
+
+
+class TimerRunDetailAdmin(admin.ModelAdmin):
+    list_display = ('job_id', 'task_type', 'task_name', 'operation', 'status', 'destination')
+
+
+admin.site.register(TimerLastRunLog, TimerLastRunLogAdmin)
+admin.site.register(TimerRunLog, TimerRunLogAdmin)
+admin.site.register(TimerRunDetail, TimerRunDetailAdmin)

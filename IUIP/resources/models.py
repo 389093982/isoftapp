@@ -5,6 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Dict(models.Model):
+    '''数据字典表'''
     dict_query_app = models.CharField(max_length=50)
     dict_query_name = models.CharField(max_length=50)
     dict_key = models.CharField(max_length=50)
@@ -25,6 +26,8 @@ class Client(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     last_updated_by = models.CharField(max_length=30)
     last_updated_date = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ['-client_name']         # 分页必须要有默认排序
 
     def __str__(self):
         return self.client_name

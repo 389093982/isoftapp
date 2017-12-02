@@ -38,11 +38,11 @@ class CronMeta(models.Model):
         db_table = 'quartz_cron_meta_t'
 
 class SchedulerLog(models.Model):
-    job_id = models.CharField(max_length=50)
-    task_type = models.CharField(max_length=50)
-    task_name = models.CharField(max_length=50)
-    created_by = models.CharField(max_length=30)
+    job_id = models.CharField(max_length=200)
+    task_type = models.CharField(max_length=100)
+    task_name = models.CharField(max_length=100)
     destination = models.CharField(max_length=50)
+    created_by = models.CharField(max_length=30)
     created_date = models.DateTimeField(auto_now_add=True)
     last_updated_by = models.CharField(max_length=30)
     last_updated_date = models.DateTimeField(auto_now=True)
@@ -54,7 +54,7 @@ class CronMetaAdmin(admin.ModelAdmin):
     pass
 
 class SchedulerLogAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('job_id', 'task_type', 'task_name', 'destination')
 
 admin.site.register(ExcludeDispatch, ExcludeDispatchAdmin)
 admin.site.register(CronMeta, CronMetaAdmin)

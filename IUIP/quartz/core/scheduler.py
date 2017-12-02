@@ -6,6 +6,7 @@
 import json
 import os
 import time
+import uuid
 
 import django
 from apscheduler.events import EVENT_JOB_ADDED, EVENT_JOB_REMOVED, EVENT_JOB_MODIFIED, EVENT_JOB_EXECUTED, \
@@ -95,9 +96,8 @@ job_defaults = {
 def quartz_execute(job_id, task_type, task_name):
     try:
         activeMQManager = ActiveMQManager()
-        body = json.dumps({'job_id': job_id, 'task_type': task_type, 'task_name': task_name})
+        body = json.dumps({'job_id': str(uuid.uuid1()), 'task_type': task_type, 'task_name': task_name})
         destination = '/queue/quartz/scheduler'
-        print(body)
         activeMQManager.send(body=body, destination=destination)
     except Exception as e:
         print(str(e))
@@ -113,19 +113,15 @@ class JobManager(object):
         self.scheduler.start()
 
     def delete_job(self, task_type, task_name):
-        jobid_prefix = task_name, '@@', task_type
-        for job in self.scheduler.get_jobs():
-            if job.id.startswith(jobid_prefix):
-                self.scheduler.remove_job(job.id)
+        self.scheduler.remove_job(self.get_jobid(task_name,task_type))
 
     def add_job(self, task_type, task_name, second, minute, hour, day, month, day_of_week, year):
         trigger = dict(second=second, minute=minute, hour=hour, day=day, month=month, day_of_week=day_of_week,
                        year=year)
         Trigger = CronTrigger(**trigger)
         # 生成jobid
-        jobid = self.create_jobid(task_type=task_type, task_name=task_name)
+        jobid = self.get_jobid(task_type=task_type, task_name=task_name)
         job = self.scheduler.add_job(quartz_execute, Trigger, id=jobid, args=[jobid, task_type, task_name])
-        print("add job %s successful!" % jobid + "; next_run_time: " + str(job.next_run_time))
 
     def reload_job(self, crons):
         for cron in crons:
@@ -138,22 +134,11 @@ class JobManager(object):
         crons = CronMeta.objects.all()
         self.reload_job(crons)
 
-    def create_jobid(self, task_name, task_type):
+    def get_jobid(self, task_name, task_type):
         # 生成 jobid
         # t = time.time()
         # print(t)                      # 原始时间数据
         # print(int(t))                 # 秒级时间戳
         # print(int(round(t * 1000)))   # 毫秒级时间戳
-        return ''.join([task_name, '@@', task_type, '@@', str(int(round(time.time() * 1000)))])
+        return ''.join([task_name, '_', task_type])
 
-
-if __name__ == '__main__':
-    a = JobManager()
-    for i in range(1, 3):
-        a.add_job(jobid='%d' % i, task_name='aaa', task_type='bbb')
-
-    try:
-        while True:
-            pass
-    except (KeyboardInterrupt, SystemExit):
-        a.scheduler.shutdown()

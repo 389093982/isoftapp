@@ -3,6 +3,7 @@
 import json
 from datetime import date, datetime
 
+from django.core import serializers
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse
@@ -15,7 +16,87 @@ from quartz.core.scheduler import deleteExclude, addCronMeta, deleteCronMeta, Jo
 from quartz.models import CronMeta
 from resources.models import Resource
 from timer.forms import IntgConfigForm
-from timer.models import IntgList, TimerIntgPoint, TimerIntgPerstep, TimerIntgFieldMapping, TimerIntgStepRelation
+from timer.models import IntgList, TimerIntgPoint, TimerIntgPerstep, TimerIntgFieldMapping, TimerIntgStepRelation, \
+    TimerRunDetail
+
+
+@csrf_exempt
+def log_timer_run_log(request):
+    response_data = {}
+    if request.method == 'GET':
+        try:
+            job_id = request.GET['job_id']
+            task_type = request.GET['task_type']
+            task_name = request.GET['task_name']
+            operation = request.GET['operation']
+            status = request.GET['status']
+            destination = request.GET['destination']
+            message = request.GET['message']
+            detail = request.GET['detail']
+
+            timerRunDetail = TimerRunDetail()
+            timerRunDetail.job_id = job_id
+            timerRunDetail.task_type = task_type
+            timerRunDetail.task_name = task_name
+            timerRunDetail.operation = operation
+            timerRunDetail.status = status
+            timerRunDetail.destination = destination
+            timerRunDetail.destination = destination
+            timerRunDetail.message = message
+            timerRunDetail.detail = detail
+
+            timerRunDetail.save()
+        except Exception as e:
+            print(str(e))
+    else:
+        response_data['status'] = 'ERROR'
+        response_data['errorMsg'] = 'unsupoort request method: %s' % request.method
+    return HttpResponse(json.dumps(response_data, ensure_ascii=False, cls=DateEncoder), content_type="application/json")
+
+@csrf_exempt
+def load_intg_to_engine(request):
+    '''往引擎中加载集成点'''
+    response_data = {}
+    intg_data = {}
+    if request.method == 'GET':
+        try:
+            task_type = request.GET['task_type']
+            task_name = request.GET['task_name']
+            if task_type == 'Timer':
+                # 查询 TimerIntgPoint 表数据
+                timerIntgPoint = TimerIntgPoint.objects.filter(integration_point_name=task_name[0:task_name.rfind('_')],
+                           integration_point_version=task_name[task_name.rfind('_')+1:]).first()
+                intg_data['timerIntgPoint'] = serializers.serialize('json', [timerIntgPoint])
+                # 查询 TimerIntgPerstep 表数据
+                timerIntgPersteps = TimerIntgPerstep.objects.filter(intg_id=timerIntgPoint.id)
+                intg_data['timerIntgPersteps'] = serializers.serialize('json', timerIntgPersteps)
+                # 查询 TimerIntgStepRelation 表数据
+                timerIntgStepRelations = TimerIntgStepRelation.objects.filter(
+                    Q(from_step_id__in=timerIntgPersteps.values('id'))
+                    | Q(to_step_id__in=timerIntgPersteps.values('id')))
+                intg_data['timerIntgStepRelations'] = serializers.serialize('json', timerIntgStepRelations)
+                # 查询 TimerIntgFieldMapping 表数据
+                timerIntgFieldMappings = TimerIntgFieldMapping.objects.filter(
+                    Q(from_field_id__in=timerIntgPersteps.values('id'))
+                    | Q(to_field_id__in=timerIntgPersteps.values('id')))
+                intg_data['timerIntgFieldMappings'] = serializers.serialize('json', timerIntgFieldMappings)
+                # 查询资源组信息
+                source_db_conn = Resource.objects.filter(resource_name=timerIntgPoint.source_db_conn)
+                target_db_conn = Resource.objects.filter(resource_name=timerIntgPoint.target_db_conn)
+                intg_data['source_db_conn'] = serializers.serialize('json', source_db_conn)
+                intg_data['target_db_conn'] = serializers.serialize('json', target_db_conn)
+                response_data['status'] = 'SUCCESS'
+                response_data['intg_data'] = intg_data
+            else:
+                response_data['status'] = 'ERROR'
+                response_data['errorMsg'] = 'unsupport task_type: %s' % task_type
+        except Exception as e:
+            response_data['status'] = 'ERROR'
+            response_data['errorMsg'] = str(e)
+    else:
+        response_data['status'] = 'ERROR'
+        response_data['errorMsg'] = 'unsupoort request method: %s' % request.method
+    return HttpResponse(json.dumps(response_data, ensure_ascii=False, cls=DateEncoder), content_type="application/json")
 
 
 def update_intg_status(integration_point_name, integration_point_version, status):
@@ -43,7 +124,7 @@ def intg_start(request):
             job_manager = JobManager()
             task_type = 'Timer'
             task_name = ''.join([integration_point_name, '_', integration_point_version])
-            crons = CronMeta.objects.filter(task_type=task_type,task_name=task_name)
+            crons = CronMeta.objects.filter(task_type=task_type, task_name=task_name)
             job_manager.reload_job(crons)
             return HttpResponse(json.dumps({'status': 'SUCCESS', 'result': 'SUCCESS'}))
         except Exception as e:
@@ -292,9 +373,9 @@ def intg_edit(request):
     timerIntgStepRelations = None
     if timerIntgPoint is not None:
         timerIntgPersteps = TimerIntgPerstep.objects.filter(intg_id=timerIntgPoint.id)
-        timerIntgStepRelations = TimerIntgStepRelation.objects.filter(Q(from_step_id__in=timerIntgPersteps.values('id'))
-                                                                      | Q(
-            to_step_id__in=timerIntgPersteps.values('id')))
+        timerIntgStepRelations = TimerIntgStepRelation.objects.filter(
+            Q(from_step_id__in=timerIntgPersteps.values('id'))
+            | Q(to_step_id__in=timerIntgPersteps.values('id')))
     return render(request, 'timer/intg_edit.html',
                   {'integration_point_name': integration_point_name,
                    'integration_point_version': integration_point_version,

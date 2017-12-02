@@ -2,7 +2,7 @@
 from django.conf.urls import url
 
 from timer.views import intg_config, intg_dev, intg_list, loadIntgsData, intg_edit, validateSql, getMetaData, \
-    saveIntgConfig, intg_del, intg_deploy, intg_stop, intg_start
+    saveIntgConfig, intg_del, intg_deploy, intg_stop, intg_start, load_intg_to_engine, log_timer_run_log
 
 urlpatterns = [
     url(r'^intg/config/', intg_config),
@@ -19,4 +19,6 @@ urlpatterns = [
     url(r'^intg/deploy/',intg_deploy),
     url(r'^intg/stop/',intg_stop),
     url(r'^intg/start/',intg_start),
+    url(r'^intg/load_intg_to_engine/',load_intg_to_engine),
+    url(r'^intg/log_timer_run_log/',log_timer_run_log),
 ]

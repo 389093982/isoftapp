@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import json
 import logging
 
-import requests
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.forms import model_to_dict
@@ -31,7 +32,8 @@ def loadClientsData(request):
                                                | Q(client_short_name__icontains=search))
         else:
             all_records = Client.objects.all()
-        if sort_column:
+
+        if sort_column is not None:
             if sort_column in ['client_name', 'client_short_name']:
                 if order == 'desc':
                     sort_column = '-%s' % (sort_column)
