@@ -6,8 +6,8 @@ from django.db import models
 
 
 class ExcludeDispatch(models.Model):
-    task_type = models.CharField(max_length=50)
-    task_name = models.CharField(max_length=150)
+    task_type = models.CharField(max_length=200)
+    task_name = models.CharField(max_length=200)
     exclude_from_time = models.DateTimeField()
     exclude_end_time = models.DateTimeField()
     created_by = models.CharField(max_length=30)
@@ -20,8 +20,8 @@ class ExcludeDispatch(models.Model):
 
 
 class CronMeta(models.Model):
-    task_type = models.CharField(max_length=50)
-    task_name = models.CharField(max_length=50)
+    task_type = models.CharField(max_length=200)
+    task_name = models.CharField(max_length=200)
     second = models.CharField(max_length=50, default='*')
     minute = models.CharField(max_length=50, default='*')
     hour = models.CharField(max_length=50, default='*')
@@ -39,8 +39,8 @@ class CronMeta(models.Model):
 
 class SchedulerLog(models.Model):
     job_id = models.CharField(max_length=200)
-    task_type = models.CharField(max_length=100)
-    task_name = models.CharField(max_length=100)
+    task_type = models.CharField(max_length=200)
+    task_name = models.CharField(max_length=200)
     destination = models.CharField(max_length=50)
     created_by = models.CharField(max_length=30)
     created_date = models.DateTimeField(auto_now_add=True)

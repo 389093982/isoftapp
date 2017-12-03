@@ -2,9 +2,11 @@ setup.py
 isoft/__init__.py
 isoft/common/__init__.py
 isoft/common/activemqtool.py
+isoft/common/dbutil.py
 isoft/common/singleton.py
 isoft/config/__init__.py
 isoft/config/mqconfig.py
+isoft/config/urlconfig.py
 isoftapp.egg-info/PKG-INFO
 isoftapp.egg-info/SOURCES.txt
 isoftapp.egg-info/dependency_links.txt

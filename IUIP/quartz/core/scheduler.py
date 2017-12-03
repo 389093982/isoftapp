@@ -113,7 +113,8 @@ class JobManager(object):
         self.scheduler.start()
 
     def delete_job(self, task_type, task_name):
-        self.scheduler.remove_job(self.get_jobid(task_name,task_type))
+        if self.scheduler.get_job(job_id=self.get_jobid(task_name, task_type)) is not None:
+            self.scheduler.remove_job(job_id=self.get_jobid(task_name, task_type))
 
     def add_job(self, task_type, task_name, second, minute, hour, day, month, day_of_week, year):
         trigger = dict(second=second, minute=minute, hour=hour, day=day, month=month, day_of_week=day_of_week,

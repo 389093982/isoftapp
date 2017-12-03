@@ -9,8 +9,8 @@ from django.forms import model_to_dict
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from isoft.common.dbutil import connection_test
 
-from common.db import getConnection
 from resources.models import Client, Resource
 
 logger = logging.getLogger("django")
@@ -132,7 +132,7 @@ def connectionTest(request):
         # d = {'url':url, 'username':username, 'password':password, 'dbType':dbType}
         try:
             # r = requests.post('http://127.0.0.1:8080/resources/connectionTest', data=d)
-            getConnection(url,username,password,dbType)
+            connection_test(url,username,password,dbType)
         except Exception as e:
             logging.error(str(e))
             return HttpResponse(json.dumps({'status':'ERROR','result':str(e)}), content_type="application/json")

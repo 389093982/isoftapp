@@ -10,8 +10,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from isoft.common import dbutil
 
-from common import db
 from quartz.core.scheduler import deleteExclude, addCronMeta, deleteCronMeta, JobManager, addExclude
 from quartz.models import CronMeta
 from resources.models import Resource
@@ -25,14 +25,14 @@ def log_timer_run_log(request):
     response_data = {}
     if request.method == 'GET':
         try:
-            job_id = request.GET['job_id']
-            task_type = request.GET['task_type']
-            task_name = request.GET['task_name']
-            operation = request.GET['operation']
-            status = request.GET['status']
-            destination = request.GET['destination']
-            message = request.GET['message']
-            detail = request.GET['detail']
+            job_id = request.GET.get('job_id')
+            task_type = request.GET.get('task_type')
+            task_name = request.GET.get('task_name')
+            operation = request.GET.get('operation')
+            status = request.GET.get('status')
+            destination = request.GET.get('destination')
+            message = request.GET.get('message')
+            detail = request.GET.get('detail')
 
             timerRunDetail = TimerRunDetail()
             timerRunDetail.job_id = job_id
@@ -206,7 +206,6 @@ def intg_del(request):
                 timerIntgFieldMappings = TimerIntgFieldMapping.objects.filter(
                     Q(from_field_id__in=timerIntgPersteps.values('id'))
                     | Q(to_field_id__in=timerIntgPersteps.values('id')))
-                print(type(timerIntgFieldMappings))
                 timerIntgFieldMappings.delete()
                 timerIntgStepRelations.delete()
                 timerIntgPersteps.delete()
@@ -329,9 +328,9 @@ def getMetaData(request):
         target_resource_password = request.POST.get('target_resource_password')
 
         try:
-            src_meta = db.getMetaData(src_resource_type, src_resource_url, src_resource_username, src_resource_password,
+            src_meta = dbutil.getMetaData(src_resource_type, src_resource_url, src_resource_username, src_resource_password,
                                       src_sql)
-            target_meta = db.getMetaData(target_resource_type, target_resource_url, target_resource_username,
+            target_meta = dbutil.getMetaData(target_resource_type, target_resource_url, target_resource_username,
                                          target_resource_password, target_sql)
 
             return HttpResponse(json.dumps({'status': 'SUCCESS', 'src_meta': src_meta, 'target_meta': target_meta}),
@@ -350,7 +349,7 @@ def validateSql(request):
         sql = request.POST.get('sql')
 
         try:
-            db.validateSql(resource_type, resource_url, resource_username, resource_password, sql)
+            dbutil.validateSql(resource_type, resource_url, resource_username, resource_password, sql)
         except Exception as e:
             return HttpResponse(json.dumps({'status': 'ERROR', 'result': str(e)}), content_type="application/json")
         return HttpResponse(json.dumps({'status': 'SUCCESS', 'result': 'SUCCESS'}), content_type="application/json")
