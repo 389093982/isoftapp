@@ -1,6 +1,64 @@
-.main{
-    background-color: #FFFFFF;
-    .panel-body{
-        height:90%;
-    }
+ul li{
+    list-style-type:none;
+}
+
+.connection_test{
+    display:none;
+    font-size:16px;
+    text-align:center;
+}
+
+.resource_info,.connection_test{
+    margin:20px;
+}
+
+.center{
+    text-align:center;
+}
+
+.operate_more{
+    margin-left:80px;
+    display:none;
+}
+
+#intg_edit_resource,#sql_input,#field_show{
+    min-height:500px;
+    margin:30px;
+    position:relative;
+}
+
+#intg_desc{
+    background:#4aaa4a;
+    padding:10px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border-radius:15px;
+}
+
+.build{
+    position:absolute;
+    top:35px;
+    right:150px;
+    width:120px;
+}
+
+.save{
+    position:absolute;
+    top:35px;
+    right:0;
+    width:120px;
+}
+
+.pres_step{
+    position:absolute;
+    bottom:20px;
+    right:150px;
+    width:120px;
+}
+
+.next_step{
+    position:absolute;
+    bottom:20px;
+    right:0;
+    width:120px;
 }

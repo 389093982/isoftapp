@@ -1,4 +1,8 @@
+var current_step = 1;   // 默认为第一步
+
 $(function(){
+
+    changeStepShow(current_step);
 
     // 下拉列表框渲染
     $('select').searchableSelect();
@@ -12,19 +16,13 @@ $(function(){
 
         var resource_name = $(this).parent().parent().parent().siblings(".searchable-select-holder").html();
 
-        // 获取对应的 textarea
-        var resourceNode;
-        var msgNode;
+        // 获取对应的内容显示区
+        var resourceInfoNode = $(this).parents(".resource_content").children(".resource_info");
+        var connectionTestNode = $(this).parents(".resource_content").children(".connection_test");
         var name = $(this).parent().parent().parent().parent().siblings("select").attr("name");
         if(name == "src_resource"){
-            resourceNode = $("textarea[class='src_resource']");
-            msgNode = $(".srcMsg");
-
             $(document).data("src_resource_name",resource_name);
         }else if(name == "target_resource"){
-            resourceNode = $("textarea[class='target_resource']");
-            msgNode = $(".destMsg");
-
             $(document).data("target_resource_name",resource_name);
         }
 
@@ -36,10 +34,11 @@ $(function(){
             success: function(data){
                 if(data.status == "success"){
                     // 设置文本域内容为 url
-                    $(resourceNode).val(data.resource.resource_url);
+                    $(resourceInfoNode).html(data.resource.resource_url);
+                    $(resourceInfoNode).show();
                     // 连接测试
                     connectionTest(data.resource.resource_type,data.resource.resource_url,
-                        data.resource.resource_username,data.resource.resource_password,resourceNode,msgNode);
+                        data.resource.resource_username,data.resource.resource_password,resourceInfoNode,connectionTestNode);
 
                     // 缓存资源组信息
                     $(document).data("resourceName_" + data.resource.resource_name, data.resource);
@@ -57,7 +56,6 @@ $(function(){
 
 function bindEvent(){
     bindButtonEvent();
-    bindHrefEvent();
     bindInitEvent();
 }
 
@@ -70,131 +68,68 @@ function bindInitEvent(){
     }
 }
 
-function bindHrefEvent(){
-
-    $(".sql_view").click(function(){
-        var tr = $(this).parent().parent();
-        var source_sql = $(tr).children("td:eq(0)").html();
-        var target_sql = $(tr).children("td:eq(1)").html();
-
-        $("#sql_source_input").val(source_sql);
-        $("#sql_target_input").val(target_sql);
-        $(document).data("modifyTr",tr);
-    });
-
-    $(".sql_delete").click(function(){
-        $(this).parent().parent().remove();
-    });
-
-    $(".sql_vlidate").click(function(){
-        var validating = $(this).data("validating");
-        // 验证中的不能再验证
-        if(validating != true){
-             $(this).data("validating",true);
-
-            // 获取资源组名称
-            var src_resource_name = $(document).data("src_resource_name");
-            var target_resource_name = $(document).data("target_resource_name");
-            // 资源组详细信息
-            var src_resource_data = $(document).data("resourceName_" + src_resource_name);
-            var target_resource_data = $(document).data("resourceName_" + target_resource_name);
-
-            // 获取sql信息
-            var tr = $(this).parent().parent();
-            var source_sql = $(tr).children("td:eq(0)").html();
-            var target_sql = $(tr).children("td:eq(1)").html();
-
-            $(tr).children("td:last").children(".wait_validate").hide();
-            $(tr).children("td:last").children(".validating").show();
-            $(tr).children("td:last").children(".msg").text("");
-
-            // sql验证
-            validateSql(src_resource_data.resource_type,src_resource_data.resource_url,
-                src_resource_data.resource_username,src_resource_data.resource_password,source_sql,tr);
-            validateSql(target_resource_data.resource_type,target_resource_data.resource_url,
-                target_resource_data.resource_username,target_resource_data.resource_password,target_sql,tr);
-
-            $(tr).children("td:last").children(".wait_validate").hide();
-            $(tr).children("td:last").children(".validating").hide();
-
-            $(this).data("validating",false);
-        }
-    });
-}
-
-function validateSql(resource_type,resource_url,resource_username,resource_password,sql,tr){
-    $.ajax({
-        type:"POST",
-        async: false,
-        url:"/timer/validateSql/",
-        data:{"resource_type":resource_type, "resource_url":resource_url,
-            "resource_username":resource_username, "resource_password":resource_password, "sql":sql},
-        datatype: "jsonp",
-        success:function(data){
-            if(data.status == "SUCCESS"){
-                var msg = "<p style='color:green;'>验证成功!</p>";
-            }else{
-                var msg = "<p style='color:red;'>验证失败!" + data.result + "</p>";
-            }
-            var html = $(tr).children("td:last").children(".msg").html();
-            $(tr).children("td:last").children(".msg").html(html + msg);
-        },
-    });
-}
-
 function bindButtonEvent(){
-    $("#sql_add").click(function(){
-        var source_sql = $("#sql_source_input").val();
-        var target_sql = $("#sql_target_input").val();
-
-        if(!isStantardSql(source_sql) || !isStantardSql(target_sql)){
-            $(".sql_format_error").show();
-            return;
-        }else{
-            $(".sql_format_error").hide();
-        }
-
-        if($(document).data("modifyTr") != null && $(document).data("modifyTr") != undefined){
-            // 修改模式
-            var tr = $(document).data("modifyTr");
-            $(tr).children("td:eq(0)").html(source_sql);
-            $(tr).children("td:eq(1)").html(target_sql);
-            $(document).removeData("modifyTr");
-        }else{
-            // 新增模式
-            var operate = "<a href=\"#\" class=\"sql_view\" title=\"编辑\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></a>"
-                                + "<a href=\"#\" class=\"sql_delete\" title=\"删除\"><span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a>"
-                                + "<a href=\"#\" class=\"sql_vlidate\" title=\"验证\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span></a>";
-
-            var label = "<span class='wait_validate'>待验证</span>"
-                + "<span><img class='validating' src='/static/common/img/Loading2.gif' style='width:20px;height:20px;display: none;'></span>"
-                + "<span class='msg'></span><br>";
-            var tr = "<tr class=\"warning\"><td>" + source_sql + "</td><td>" + target_sql + "</td><td>" + operate + "</td><td>" + label + "</td></tr>";
-            $("#sql_data").append(tr);
-            // 重新绑定事件
-            bindHrefEvent();
-        }
-
-    });
-
-    $("#sql_reset").click(function(){
-        $("#sql_source_input").val("");
-        $("#sql_target_input").val("");
-    });
-    
-    $("#batch_validate").click(function(){
-        $(".sql_vlidate").each(function(){
-            $(this).trigger("click");
-        });
-    });
-
-    $("#build").click(function(){
+    $(".build").click(function(){
         buildFieldMapping();
     });
 
-    $("#saveIntgConfig").click(function(){
+    $(".save").click(function(){
         saveIntgConfig();
     });
+
+    $(".next_step").click(function(){
+        if(current_step < 3){
+            current_step = current_step + 1;
+            changeStepShow(current_step);
+        }
+    });
+
+    $(".pres_step").click(function(){
+        if(current_step > 1){
+            current_step = current_step - 1;
+            changeStepShow(current_step);
+        }
+    });
+}
+
+function changeStepShow(step){
+    if(step == 1){
+        // 隐藏进度条
+        $(".first").show();
+        $(".second").hide();
+        $(".third").hide();
+        // 隐藏内容区
+        $("#intg_edit_resource").show();
+        $("#sql_input").hide();
+        $("#field_show").hide();
+        // 按钮禁用
+        $(".pres_step").attr("disabled",true);
+        $(".next_step").attr("disabled",false);
+    }else if(step == 2){
+        // 隐藏进度条
+        $(".first").show();
+        $(".second").show();
+        $(".third").hide();
+        // 隐藏内容区
+        $("#intg_edit_resource").hide();
+        $("#sql_input").show();
+        $("#field_show").hide();
+        // 按钮禁用
+        $(".pres_step").attr("disabled",false);
+        $(".next_step").attr("disabled",false);
+    }else if(step == 3){
+        // 隐藏进度条
+        $(".first").show();
+        $(".second").show();
+        $(".third").show();
+        // 隐藏内容区
+        $("#intg_edit_resource").hide();
+        $("#sql_input").hide();
+        $("#field_show").show();
+        // 按钮禁用
+        $(".pres_step").attr("disabled",false);
+        $(".next_step").attr("disabled",true);
+    }
 }
 
 function saveIntgConfig(){
@@ -243,9 +178,10 @@ function buildFieldMapping(){
     var sqlArray = new Array();
     var fieldMappingArray = new Array();
 
-    $("#sql_data tr:not(:first)").each(function(index){
-        var src_sql = $(this).children("td:eq(0)").html();
-        var target_sql = $(this).children("td:eq(1)").html();
+    $("#sql_data tbody tr:not(:first)").each(function(index, trNode){
+        // 获取sql信息
+        var src_sql = $(trNode).children("td:eq(1)").children("textarea").val();
+        var target_sql = $(trNode).children("td:eq(2)").children("textarea").val();
 
         var array = new Array();
         array.push(src_sql);
@@ -356,32 +292,7 @@ function renderFieldMappingUI(data,index){
     }
 }
 
-function isStantardSql(sql){
-    // 可以为空
-    if(isNull(sql)){
-        return true;
-    }
-    // 判断是否 CRUD 开头
-    var index1 = sql.trim().toUpperCase().indexOf("SELECT ");
-    var index2 = sql.trim().toUpperCase().indexOf("INSERT ");
-    var index3 = sql.trim().toUpperCase().indexOf("UPDATE ");
-    var index4 = sql.trim().toUpperCase().indexOf("DELETE ");
-    if(index1 == 0 || index2 == 0 || index3 == 0 || index4 == 0){
-        return true;
-    }
-    return false;
-}
-
-// 判断字符串是否为空
-function isNull(str){
-    if(str == "")
-        return true;
-    var regu = "^[ ]+$";
-    var re = new RegExp(regu);
-    return re.test(str);
-}
-
-function connectionTest(resource_type,resource_url,resource_username,resource_password,resourceNode,msgNode){
+function connectionTest(resource_type,resource_url,resource_username,resource_password,resourceInfoNode,connectionTestNode){
     $.ajax({
         type:"POST",
         async: false,
@@ -391,15 +302,104 @@ function connectionTest(resource_type,resource_url,resource_username,resource_pa
         datatype: "jsonp",
         success:function(data){
             if(data.status == 'SUCCESS'){
-                $(msgNode).show();
-                $(msgNode).css('color', 'green');
-                $(msgNode).html("连接成功");
+                $(connectionTestNode).show();
+                $(connectionTestNode).css('color', 'green');
+                $(connectionTestNode).html("连接成功");
+
+                $(connectionTestNode).siblings(".operate_more").show();
             }else{
                 // 显示异常信息
-                $(msgNode).show();
-                $(msgNode).css('color', 'red');
-                $(msgNode).html(data.result);
+                $(connectionTestNode).show();
+                $(connectionTestNode).css('color', 'red');
+                $(connectionTestNode).html(data.result);
             }
         },
     });
+}
+
+function sql_vlidate_all(node){
+    $(node).parents("tbody").children("tr:not(:first)").each(function(index, trNode){
+        // 获取资源组名称
+        var src_resource_name = $(document).data("src_resource_name");
+        var target_resource_name = $(document).data("target_resource_name");
+
+        // 资源组详细信息
+        var src_resource_data = $(document).data("resourceName_" + src_resource_name);
+        var target_resource_data = $(document).data("resourceName_" + target_resource_name);
+
+        // 获取sql信息
+        var source_sql = $(trNode).children("td:eq(1)").children("textarea").val();
+        var target_sql = $(trNode).children("td:eq(2)").children("textarea").val();
+
+        // 清空提示信息信息
+        $(trNode).children("td:last").html("");
+
+        if(isCRSql(source_sql)){
+            // sql验证
+            validateSql(src_resource_data.resource_type,src_resource_data.resource_url,
+                src_resource_data.resource_username,src_resource_data.resource_password,source_sql,trNode);
+        }
+        if(isCRSql(target_sql)){
+            // sql验证
+            validateSql(target_resource_data.resource_type,target_resource_data.resource_url,
+                target_resource_data.resource_username,target_resource_data.resource_password,target_sql,trNode);
+        }
+    });
+}
+
+function sql_delete(node){
+    if($(node).parents("tbody").children("tr").length > 2){
+        $(node).parents("tr").remove();
+    }
+}
+
+function sql_add(node){
+    // 复制一行
+    var row = $("#sql_data tbody").children("tr:eq(1)").clone();
+    // 加到最后
+    $(node).parents("tbody").append(row);
+    // 清空元素
+    $("#sql_data tbody").children("tr:last").children("td").children("textarea").text("");
+    $("#sql_data tbody").children("tr:last").children("td:last").html("");
+}
+
+function validateSql(resource_type,resource_url,resource_username,resource_password,sql,tr){
+    $.ajax({
+        type:"POST",
+        async: false,
+        url:"/timer/validateSql/",
+        data:{"resource_type":resource_type, "resource_url":resource_url,
+            "resource_username":resource_username, "resource_password":resource_password, "sql":sql},
+        datatype: "jsonp",
+        success:function(data){
+            // 获取提示信息
+            var msg = $(tr).children("td:last").html();
+            if(data.status == "SUCCESS"){
+                msg = msg + "<font size='3px;' style='color:green;'>验证成功!</font><br>";
+            }else{
+                msg = msg + "<font size='2px;' style='color:red;'>验证失败!" + data.result + "</font><br>";
+            }
+            $(tr).children("td:last").html(msg);
+        },
+    });
+}
+
+// 判断是否 CR 开头
+function isCRSql(sql){
+    var index1 = sql.trim().toUpperCase().indexOf("SELECT ");
+    var index2 = sql.trim().toUpperCase().indexOf("INSERT ");
+    if(index1 == 0 || index2 == 0){
+        return true;
+    }
+    return false;
+}
+
+// 判断是否 UD 开头
+function isUDSql(sql){
+    var index1 = sql.trim().toUpperCase().indexOf("UPDATE ");
+    var index2 = sql.trim().toUpperCase().indexOf("DELETE ");
+    if(index1 == 0 || index2 == 0){
+        return true;
+    }
+    return false;
 }

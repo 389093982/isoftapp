@@ -132,7 +132,20 @@ class JobManager(object):
                          cron.day_of_week, cron.year)
 
     def init_jobs(self):
-        crons = CronMeta.objects.all()
+        # crons = CronMeta.objects.all()    # 查询全部
+        crons = CronMeta.objects.raw('''
+            SELECT
+              a.*
+            FROM
+              quartz_cron_meta_t a
+              INNER JOIN exclude_dispatch_t b
+                ON a.`task_name` = b.`task_name`
+                AND a.`task_type` = b.`task_type`
+                AND (
+                  b.`exclude_from_time` > SYSDATE()
+                  OR b.`exclude_end_time` < SYSDATE()
+                )
+        ''')
         self.reload_job(crons)
 
     def get_jobid(self, task_name, task_type):

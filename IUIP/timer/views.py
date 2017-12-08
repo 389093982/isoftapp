@@ -10,14 +10,51 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from isoft.common import dbutil
 
+from isoft.common import dbutil
 from quartz.core.scheduler import deleteExclude, addCronMeta, deleteCronMeta, JobManager, addExclude
 from quartz.models import CronMeta
 from resources.models import Resource
 from timer.forms import IntgConfigForm
 from timer.models import IntgList, TimerIntgPoint, TimerIntgPerstep, TimerIntgFieldMapping, TimerIntgStepRelation, \
-    TimerRunDetail
+    TimerRunDetail, TimerLastRunLog, TimerRunLog
+
+
+@csrf_exempt
+def log_timer_last_run_log(request):
+    response_data = {}
+    if request.method == 'GET':
+        try:
+            job_id = request.GET.get('job_id')
+            task_type = request.GET.get('task_type')
+            task_name = request.GET.get('task_name')
+            status = request.GET.get('status')
+            datacount = request.GET.get('datacount')
+            destination = request.GET.get('destination')
+            message = request.GET.get('message')
+            detail = request.GET.get('detail')
+            created_by = request.GET.get('created_by')
+            last_updated_by = request.GET.get('last_updated_by')
+
+            TimerLastRunLog.objects.update_or_create(task_type=task_type, task_name=task_name,
+                                                     defaults={
+                                                         'job_id': job_id, 'task_type': task_type,
+                                                         'task_name': task_name, 'status': status,
+                                                         'datacount': datacount,
+                                                         'destination': destination, 'message': message,
+                                                         'detail': detail,
+                                                         'created_by': created_by, 'last_updated_by': last_updated_by
+                                                     })
+            TimerRunLog.objects.create(job_id=job_id, task_type=task_type, task_name=task_name,
+                                       status=status, datacount=datacount, destination=destination,
+                                       message=message, detail=detail, created_by=created_by,
+                                       last_updated_by=last_updated_by)
+        except Exception as e:
+            print(str(e))
+    else:
+        response_data['status'] = 'ERROR'
+        response_data['errorMsg'] = 'unsupoort request method: %s' % request.method
+    return HttpResponse(json.dumps(response_data, ensure_ascii=False, cls=DateEncoder), content_type="application/json")
 
 
 @csrf_exempt
@@ -33,6 +70,8 @@ def log_timer_run_log(request):
             destination = request.GET.get('destination')
             message = request.GET.get('message')
             detail = request.GET.get('detail')
+            created_by = request.GET.get('created_by')
+            last_updated_by = request.GET.get('last_updated_by')
 
             timerRunDetail = TimerRunDetail()
             timerRunDetail.job_id = job_id
@@ -41,9 +80,10 @@ def log_timer_run_log(request):
             timerRunDetail.operation = operation
             timerRunDetail.status = status
             timerRunDetail.destination = destination
-            timerRunDetail.destination = destination
             timerRunDetail.message = message
             timerRunDetail.detail = detail
+            timerRunDetail.created_by = created_by
+            timerRunDetail.last_updated_by = last_updated_by
 
             timerRunDetail.save()
         except Exception as e:
@@ -52,6 +92,7 @@ def log_timer_run_log(request):
         response_data['status'] = 'ERROR'
         response_data['errorMsg'] = 'unsupoort request method: %s' % request.method
     return HttpResponse(json.dumps(response_data, ensure_ascii=False, cls=DateEncoder), content_type="application/json")
+
 
 @csrf_exempt
 def load_intg_to_engine(request):
@@ -65,7 +106,8 @@ def load_intg_to_engine(request):
             if task_type == 'Timer':
                 # 查询 TimerIntgPoint 表数据
                 timerIntgPoint = TimerIntgPoint.objects.filter(integration_point_name=task_name[0:task_name.rfind('_')],
-                           integration_point_version=task_name[task_name.rfind('_')+1:]).first()
+                                                               integration_point_version=task_name[task_name.rfind(
+                                                                   '_') + 1:]).first()
                 intg_data['timerIntgPoint'] = serializers.serialize('json', [timerIntgPoint])
                 # 查询 TimerIntgPerstep 表数据
                 timerIntgPersteps = TimerIntgPerstep.objects.filter(intg_id=timerIntgPoint.id)
@@ -328,10 +370,11 @@ def getMetaData(request):
         target_resource_password = request.POST.get('target_resource_password')
 
         try:
-            src_meta = dbutil.getMetaData(src_resource_type, src_resource_url, src_resource_username, src_resource_password,
-                                      src_sql)
+            src_meta = dbutil.getMetaData(src_resource_type, src_resource_url, src_resource_username,
+                                          src_resource_password,
+                                          src_sql)
             target_meta = dbutil.getMetaData(target_resource_type, target_resource_url, target_resource_username,
-                                         target_resource_password, target_sql)
+                                             target_resource_password, target_sql)
 
             return HttpResponse(json.dumps({'status': 'SUCCESS', 'src_meta': src_meta, 'target_meta': target_meta}),
                                 content_type="application/json")
