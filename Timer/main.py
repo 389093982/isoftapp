@@ -45,7 +45,7 @@ class TimerActiveMQListener(ActiveMQListener):
                 # timer 开始执行任务
                 timer.start_with_execute_task()
         except Exception as e:
-            print('aaaaaaaaaa', str(e))
+            print(str(e))
 
 if __name__ == '__main__':
     try:

@@ -365,7 +365,7 @@ function sql_add(node){
     // 加到最后
     $(node).parents("tbody").append(row);
     // 清空元素
-    $("#sql_data tbody").children("tr:last").children("td").children("textarea").text("");
+    $("#sql_data tbody").children("tr:last").children("td").children("textarea").val("");
     $("#sql_data tbody").children("tr:last").children("td:last").html("");
 }
 
