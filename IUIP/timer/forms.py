@@ -25,7 +25,7 @@ class IntgConfigForm(forms.Form):
                                         label='下游接口表名')
     business_meaning = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'style':'width:65%;'}),
                                         label='集成业务含义')
-    description = forms.CharField(widget=forms.Textarea(attrs={'style':'width:84%;height: 100px;'}),
+    descript = forms.CharField(widget=forms.Textarea(attrs={'style':'width:84%;height: 100px;'}),
                                  label='备注')
     def clean(self):
         cleaned_data = super(IntgConfigForm,self).clean()

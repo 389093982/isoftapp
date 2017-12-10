@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
+
 from django.contrib import admin
 from django.db import models
 
@@ -15,6 +17,7 @@ class IntgList(models.Model):
     status = models.IntegerField()  # 0 草稿状态
     source_client_name = models.CharField(max_length=50)
     target_client_name = models.CharField(max_length=50)
+    description = models.TextField(null=True, blank=True)
     created_by = models.CharField(max_length=30)
     created_date = models.DateTimeField(auto_now_add=True)
     last_updated_by = models.CharField(max_length=30)
@@ -38,6 +41,7 @@ class TimerIntgPoint(models.Model):
     target_db_conn = models.CharField(max_length=100)
     source_client_name = models.CharField(max_length=50)
     target_client_name = models.CharField(max_length=50)
+    migrate_begin_time = models.DateTimeField(default=datetime(1970, 1, 1, 00, 00, 00))
     created_by = models.CharField(max_length=30)
     created_date = models.DateTimeField(auto_now_add=True)
     last_updated_by = models.CharField(max_length=30)

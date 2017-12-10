@@ -37,6 +37,16 @@ class CronMeta(models.Model):
     class Meta:
         db_table = 'quartz_cron_meta_t'
 
+class SyncTimeLog(models.Model):
+    task_type = models.CharField(max_length=200)
+    task_name = models.CharField(max_length=200)
+    migrate_begin_time = models.DateTimeField()
+    migrate_end_time = models.DateTimeField()
+    created_by = models.CharField(max_length=30)
+    created_date = models.DateTimeField(auto_now_add=True)
+    last_updated_by = models.CharField(max_length=30)
+    last_updated_date = models.DateTimeField(auto_now=True)
+
 class SchedulerLog(models.Model):
     job_id = models.CharField(max_length=200)
     task_type = models.CharField(max_length=200)
@@ -47,6 +57,9 @@ class SchedulerLog(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updated_date = models.DateTimeField(auto_now=True)
 
+class SyncTimeLogAdmin(admin.ModelAdmin):
+    pass
+
 class ExcludeDispatchAdmin(admin.ModelAdmin):
     pass
 
@@ -56,6 +69,7 @@ class CronMetaAdmin(admin.ModelAdmin):
 class SchedulerLogAdmin(admin.ModelAdmin):
     list_display = ('job_id', 'task_type', 'task_name', 'destination')
 
+admin.site.register(SyncTimeLog, SyncTimeLogAdmin)
 admin.site.register(ExcludeDispatch, ExcludeDispatchAdmin)
 admin.site.register(CronMeta, CronMetaAdmin)
 admin.site.register(SchedulerLog, SchedulerLogAdmin)

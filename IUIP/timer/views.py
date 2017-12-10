@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from isoft.common import dbutil
 from quartz.core.scheduler import deleteExclude, addCronMeta, deleteCronMeta, JobManager, addExclude
-from quartz.models import CronMeta
+from quartz.models import CronMeta, SyncTimeLog
 from resources.models import Resource
 from timer.forms import IntgConfigForm
 from timer.models import IntgList, TimerIntgPoint, TimerIntgPerstep, TimerIntgFieldMapping, TimerIntgStepRelation, \
@@ -35,6 +35,8 @@ def log_timer_last_run_log(request):
             detail = request.GET.get('detail')
             created_by = request.GET.get('created_by')
             last_updated_by = request.GET.get('last_updated_by')
+            migrate_begin_time = request.GET.get('migrate_begin_time')
+            migrate_end_time = request.GET.get('migrate_end_time')
 
             TimerLastRunLog.objects.update_or_create(task_type=task_type, task_name=task_name,
                                                      defaults={
@@ -49,6 +51,16 @@ def log_timer_last_run_log(request):
                                        status=status, datacount=datacount, destination=destination,
                                        message=message, detail=detail, created_by=created_by,
                                        last_updated_by=last_updated_by)
+
+            if migrate_begin_time is not None and migrate_end_time is not None:
+                SyncTimeLog.objects.update_or_create(task_type=task_type, task_name=task_name,
+                                                     defaults={
+                                                         'task_type': task_type,
+                                                         'task_name': task_name,
+                                                         'migrate_begin_time': migrate_begin_time,
+                                                         'migrate_end_time': migrate_end_time,
+                                                         'created_by': created_by, 'last_updated_by': last_updated_by
+                                                     })
         except Exception as e:
             print(str(e))
     else:
@@ -127,6 +139,9 @@ def load_intg_to_engine(request):
                 target_db_conn = Resource.objects.filter(resource_name=timerIntgPoint.target_db_conn)
                 intg_data['source_db_conn'] = serializers.serialize('json', source_db_conn)
                 intg_data['target_db_conn'] = serializers.serialize('json', target_db_conn)
+                # 查询时间戳表
+                sync_time_log = SyncTimeLog.objects.filter(task_type=task_type, task_name=task_name)
+                intg_data['sync_time_log'] = serializers.serialize('json', sync_time_log)
                 response_data['status'] = 'SUCCESS'
                 response_data['intg_data'] = intg_data
             else:
@@ -436,14 +451,14 @@ def intg_config(request):
             target_client_name = form.cleaned_data['target_client_name']
             target_table_name = form.cleaned_data['target_table_name']
             business_meaning = form.cleaned_data['business_meaning']
-            description = form.cleaned_data['description']
+            descript = form.cleaned_data['descript']
             initial_deploy_env = form.cleaned_data['initial_deploy_env']
 
             integration_point_name = ''.join(
                 [source_client_name, '2', target_client_name, '(', target_table_name, ')_', business_meaning, '_Timer'])
             intg_list = IntgList(integration_point_name=integration_point_name, integration_point_version='v1.0',
                                  env_name=initial_deploy_env, status=0, source_client_name=source_client_name,
-                                 target_client_name=target_client_name, created_by='SYSTEM', last_updated_by='SYSTEM')
+                                 target_client_name=target_client_name, created_by='SYSTEM', last_updated_by='SYSTEM', description = descript)
             intg_list.save()
             return HttpResponseRedirect('/timer/intg/list/')
     else:

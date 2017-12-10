@@ -102,9 +102,11 @@ function changeStepShow(step){
         $("#intg_edit_resource").show();
         $("#sql_input").hide();
         $("#field_show").hide();
-        // 按钮禁用
-        $(".pres_step").attr("disabled",true);
-        $(".next_step").attr("disabled",false);
+        // 按钮隐藏
+        $(".pres_step").hide();
+        $(".next_step").show();
+        $(".build").hide();
+        $(".save").hide();
     }else if(step == 2){
         // 隐藏进度条
         $(".first").show();
@@ -114,9 +116,11 @@ function changeStepShow(step){
         $("#intg_edit_resource").hide();
         $("#sql_input").show();
         $("#field_show").hide();
-        // 按钮禁用
-        $(".pres_step").attr("disabled",false);
-        $(".next_step").attr("disabled",false);
+        // 按钮隐藏
+        $(".pres_step").show();
+        $(".next_step").show();
+        $(".build").hide();
+        $(".save").hide();
     }else if(step == 3){
         // 隐藏进度条
         $(".first").show();
@@ -126,9 +130,11 @@ function changeStepShow(step){
         $("#intg_edit_resource").hide();
         $("#sql_input").hide();
         $("#field_show").show();
-        // 按钮禁用
-        $(".pres_step").attr("disabled",false);
-        $(".next_step").attr("disabled",true);
+        // 按钮隐藏
+        $(".pres_step").show();
+        $(".next_step").hide();
+        $(".build").show();
+        $(".save").show();
     }
 }
 
