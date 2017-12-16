@@ -56,7 +56,7 @@ def update_or_create_exclude(task_type, task_name, exclude_from_time, exclude_en
 ########################################## quartz_apscheduler_job ####################################################
 
 # 默认30分钟执行一次
-def addCronMeta(task_type, task_name, second='0,10,20,30,40,50', minute='*', hour='*', day='*', month='*',
+def addCronMeta(task_type, task_name, second='*', minute='0,30', hour='*', day='*', month='*',
                 day_of_week='*', year='*'):
     CronMeta.objects.create(task_type=task_type, task_name=task_name, second=second, minute=minute, hour=hour, day=day,
                             month=month, day_of_week=day_of_week, year=year)
@@ -93,7 +93,7 @@ job_defaults = {
 }
 
 
-def quartz_execute(job_id, task_type, task_name):
+def quartz_execute(task_type, task_name):
     try:
         activeMQManager = ActiveMQManager()
         body = json.dumps({'job_id': str(uuid.uuid1()), 'task_type': task_type, 'task_name': task_name})
@@ -122,7 +122,7 @@ class JobManager(object):
         Trigger = CronTrigger(**trigger)
         # 生成jobid
         jobid = self.get_jobid(task_type=task_type, task_name=task_name)
-        job = self.scheduler.add_job(quartz_execute, Trigger, id=jobid, args=[jobid, task_type, task_name])
+        job = self.scheduler.add_job(quartz_execute, Trigger, id=jobid, args=[task_type, task_name])
 
     def reload_job(self, crons):
         for cron in crons:

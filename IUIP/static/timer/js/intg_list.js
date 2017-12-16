@@ -5,6 +5,8 @@ $(function () {
     //2.初始化Button的点击事件
     var oButtonInit = new ButtonInit();
     oButtonInit.Init();
+    // 默认隐藏列
+    $('#intg_list_table').bootstrapTable('hideColumn', 'last_updated_date');
 
     $('#btn_reset').click(function(){
         $('#formSearch')[0].reset();
@@ -51,8 +53,9 @@ var TableInit = function () {
                 field: 'integration_point_name',
                 title: '集成点名称',
                 formatter:function(value, row, index){
-                        var div = "<div style='width:400px;'>"+value+"</div>";
-                        return div;
+                        // 超链接无下划线,且鼠标悬停有提示
+                        var html = "<a href='#' style='text-decoration:none' data-toggle='tooltip' title='" + value + "'>" + value + "</a>";
+                        return html;
                     }
             }, {
                 field: 'integration_point_version',
@@ -62,7 +65,7 @@ var TableInit = function () {
                 title: '环境名称'
             },  {
                 field: 'status',
-                title: '集成点状态',
+                title: '状态',
                 formatter: statusFormatter
             },  {
                 field: 'source_client_name',
@@ -71,9 +74,14 @@ var TableInit = function () {
                 field: 'target_client_name',
                 title: '宿系统'
             },  {
+                field: 'last_run_log',
+                title: '最后一次运行状态',
+                align: 'center',
+                formatter: runLogFormatter
+            }, {
                 field: 'last_updated_date',
                 title: '最后更新时间',
-            },{
+            }, {
                 field: 'operate',
                 title: '操作',
                 align: 'center',
@@ -127,10 +135,11 @@ function operateFormatter(value, row, index) {//赋予的参数
     }else if(status == 1){
         str = appendEditLink(str,row.integration_point_name,row.integration_point_version);
         str = appendDeployLink(str,row.integration_point_name,row.integration_point_version);
-        str = appendRunonceLink(str);
+        str = appendRunonceLink(str,row.integration_point_name,row.integration_point_version);
         str = appendDelLink(str,row.integration_point_name,row.integration_point_version);
     }else if(status == 2){
         str = appendStopLink(str,row.integration_point_name,row.integration_point_version);
+        str = appendRunonceLink(str,row.integration_point_name,row.integration_point_version);
     }else if(status == 3){
         str = appendStartLink(str,row.integration_point_name,row.integration_point_version);
     }else{
@@ -160,9 +169,9 @@ function appendDeployLink(str,integration_point_name,integration_point_version){
     return str;
 }
 
-function appendRunonceLink(str){
-    var runoncehref = "#";
-    str += '<a href="' + runoncehref + '" title="临时调度"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>&nbsp;';
+function appendRunonceLink(str,integration_point_name,integration_point_version){
+    var runoncehref = "/timer/intg/timer_run_trigger?task_type=Timer&task_name=" + integration_point_name + "_" + integration_point_version;
+    str += '<a href="#" link="' + runoncehref + '" title="临时调度" onclick="runTrigger(this)"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>&nbsp;';
     return str;
 }
 
@@ -178,6 +187,26 @@ function appendDelLink(str,integration_point_name,integration_point_version){
                     + "&integration_point_version=" + integration_point_version;
     str += '<a href="#" link=' + delhref + ' title="删除集成点" onclick="intgDel(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>&nbsp;';
     return str;
+}
+
+// 临时调度接口
+function runTrigger(node){
+    var href = $(node).attr('link');
+    $.ajax({
+        type:"GET",
+        async: false,
+        url: href,
+        data:{},
+        datatype: "jsonp",
+        success:function(data){
+            if(data.status == 'SUCCESS'){
+                // 表格刷新
+                $('#intg_list_table').bootstrapTable('refresh');
+            }else{
+                alert('临时调度失败:' + data.result);
+            }
+        },
+    });
 }
 
 function intgStart(node){
@@ -262,15 +291,25 @@ function intgDel(node){
 
 function statusFormatter(value, row, index) {
     if(value == 0){
-        return '<font color="#CC00FF">草稿状态</font>';
+        return '<font color="#CC00FF">草稿</font>';
     }else if(value == 1){
-        return '<font color="#3300FF">待部署状态</font>';
+        return '<font color="#3300FF">待部署</font>';
     }else if(value == 2){
-        return '<font color="#FFCC00">启用状态</font>';
+        return '<font color="#FFCC00">启用</font>';
     }else if(value == 3){
-        return '<font color="#0000CC">停用状态</font>';
+        return '<font color="#0000CC">停用</font>';
     }else{
-        return '<font color="#FF0000">未知状态</font>';
+        return '<font color="#FF0000">未知</font>';
+    }
+}
+
+function runLogFormatter(value, row, index) {
+    if(value == 'NONE'){
+        return '<font color="#888888">无运行状态</font>';
+    }else if(value == 'SUCCESS'){
+        return '<font color="#009900">' + value + '</font>';
+    }else{
+        return '<font color="#FF0000">' + value + '</font>';
     }
 }
 

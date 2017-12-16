@@ -12,12 +12,28 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from isoft.common import dbutil
+from quartz.core import scheduler
 from quartz.core.scheduler import deleteExclude, addCronMeta, deleteCronMeta, JobManager, addExclude
 from quartz.models import CronMeta, SyncTimeLog
 from resources.models import Resource
 from timer.forms import IntgConfigForm
 from timer.models import IntgList, TimerIntgPoint, TimerIntgPerstep, TimerIntgFieldMapping, TimerIntgStepRelation, \
     TimerRunDetail, TimerLastRunLog, TimerRunLog
+
+@csrf_exempt
+def timer_run_trigger(request):
+    response_data = {}
+    if request.method == 'GET':
+        try:
+            task_type = request.GET.get('task_type')
+            task_name = request.GET.get('task_name')
+            scheduler.quartz_execute(task_type=task_type,task_name=task_name)
+            response_data['status'] = 'SUCCESS'
+        except Exception as e:
+            response_data['status'] = 'ERROR'
+    else:
+        response_data['status'] = 'ERROR'
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
 @csrf_exempt
@@ -45,12 +61,15 @@ def log_timer_last_run_log(request):
                                                          'datacount': datacount,
                                                          'destination': destination, 'message': message,
                                                          'detail': detail,
-                                                         'created_by': created_by, 'last_updated_by': last_updated_by
+                                                         'created_by': created_by, 'last_updated_by': last_updated_by,
+                                                         'migrate_begin_time' : migrate_begin_time,
+                                                         'migrate_end_time' : migrate_end_time
                                                      })
             TimerRunLog.objects.create(job_id=job_id, task_type=task_type, task_name=task_name,
                                        status=status, datacount=datacount, destination=destination,
                                        message=message, detail=detail, created_by=created_by,
-                                       last_updated_by=last_updated_by)
+                                       last_updated_by=last_updated_by,migrate_begin_time=migrate_begin_time,
+                                       migrate_end_time=migrate_end_time)
 
             if migrate_begin_time is not None and migrate_end_time is not None:
                 SyncTimeLog.objects.update_or_create(task_type=task_type, task_name=task_name,
@@ -142,6 +161,7 @@ def load_intg_to_engine(request):
                 # 查询时间戳表
                 sync_time_log = SyncTimeLog.objects.filter(task_type=task_type, task_name=task_name)
                 intg_data['sync_time_log'] = serializers.serialize('json', sync_time_log)
+
                 response_data['status'] = 'SUCCESS'
                 response_data['intg_data'] = intg_data
             else:
@@ -530,10 +550,19 @@ def loadIntgsData(request):
                 "source_client_name": intg.source_client_name if intg.source_client_name else "",
                 "target_client_name": intg.target_client_name if intg.target_client_name else "",
                 "last_updated_date": intg.last_updated_date if intg.last_updated_date else "",
+                "last_run_log": getLastRunLog(integration_point_name=intg.integration_point_name,
+                                              integration_point_version= intg.integration_point_version),
             })
             index = index + 1
     return HttpResponse(json.dumps(response_data, cls=DateEncoder))
 
+def getLastRunLog(integration_point_name, integration_point_version):
+    task_type = 'Timer'
+    task_name = ''.join([integration_point_name, '_', integration_point_version])
+    status = TimerLastRunLog.objects.filter(task_type=task_type,task_name=task_name).values('status')
+    if status is not None and len(status) > 0:
+        return status[0]['status']
+    return 'NONE'
 
 class DateEncoder(json.JSONEncoder):
     def default(self, obj):

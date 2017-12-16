@@ -16,34 +16,6 @@
 
 {% block main %}
     <div class="panel-body" style="padding-bottom:0px;">
-<!--        <div class="panel panel-default">
-            <div class="panel-heading">查询条件</div>
-            <div class="panel-body">
-                <form id="formSearch" class="form-inline">
-                    <div class="form-group" style="width:45%;">
-                        <label for="txt_search_integration_point_name" style="width:30%;">集成点名称:</label>
-                        <input type="text" name="integration_point_name" class="form-control" id="txt_search_integration_point_name" placeholder="请输入有效的值">
-                    </div>
-                    <div class="form-group" style="width:45%;">
-                        <label for="txt_search_env_name" style="width:30%;">环境名称:</label>
-                        <input type="text" name="env_name" class="form-control" id="txt_search_env_name" placeholder="请输入有效的值">
-                    </div>
-                    <div class="form-group" style="width:45%;">
-                        <label for="txt_search_source_client_name" style="width:30%;">源系统:</label>
-                        <input type="text" name="source_client_name" class="form-control" id="txt_search_source_client_name" placeholder="请输入有效的值">
-                    </div>
-                    <div class="form-group" style="width:45%;">
-                        <label for="txt_search_target_client_name" style="width:30%;">宿系统:</label>
-                        <input type="text" name="target_client_name" class="form-control" id="txt_search_target_client_name" placeholder="请输入有效的值">
-                    </div>
-                    <div class="form-group" style="width:45%;text-align:center;">
-                        <button type="button" name="SubmitButton" id="btn_query" class="btn btn-success">提交</button>
-                        <button type="button" name="ResetButton" id="btn_reset" class="btn btn-success">重置</button>
-                    </div>
-                </form>
-            </div>
-        </div>-->
-
         <div>
             <form id="formSearch" class="am-form-inline" role="form" style="text-align:center">
                 {% csrf_token %}
@@ -66,7 +38,8 @@
         </div>
 
         <div class=table-responsive">
-            <table id="intg_list_table" class="table"></table>
+            <!-- 不换行 -->
+            <table id="intg_list_table" class="table text-nowrap"></table>
         </div>
     </div>
 {% endblock %}
