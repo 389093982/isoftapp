@@ -140,11 +140,20 @@ function operateFormatter(value, row, index) {//赋予的参数
     }else if(status == 2){
         str = appendStopLink(str,row.integration_point_name,row.integration_point_version);
         str = appendRunonceLink(str,row.integration_point_name,row.integration_point_version);
+        str = appendExportLink(str,row.integration_point_name,row.integration_point_version);
     }else if(status == 3){
         str = appendStartLink(str,row.integration_point_name,row.integration_point_version);
+        str = appendExportLink(str,row.integration_point_name,row.integration_point_version);
     }else{
         str = "";
     }
+    return str;
+}
+
+function appendExportLink(str,integration_point_name,integration_point_version){
+    var exporthref = "/timer/intg/export?integration_point_name=" + integration_point_name
+                    + "&integration_point_version=" + integration_point_version;
+    str += '<a href="' + exporthref + '" title="导出"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></a>&nbsp;';
     return str;
 }
 

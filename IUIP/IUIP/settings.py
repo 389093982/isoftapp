@@ -187,4 +187,6 @@ LOGGING = {
     }
 }
 
+Timer_DOWNLOAD_PATH = os.path.join(BASE_DIR, "download"),
+
 quartz_apscheduler_job_stroe_url = 'mysql://root:123456@localhost/quartz_apscheduler_job'

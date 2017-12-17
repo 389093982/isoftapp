@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import json
+import tempfile
+import zipfile
 from datetime import date, datetime
+from wsgiref.util import FileWrapper
 
 from django.core import serializers
 from django.core.paginator import Paginator
@@ -14,11 +17,82 @@ from django.views.decorators.csrf import csrf_exempt
 from isoft.common import dbutil
 from quartz.core import scheduler
 from quartz.core.scheduler import deleteExclude, addCronMeta, deleteCronMeta, JobManager, addExclude
-from quartz.models import CronMeta, SyncTimeLog
+from quartz.models import CronMeta, SyncTimeLog, ExcludeDispatch
 from resources.models import Resource
 from timer.forms import IntgConfigForm
 from timer.models import IntgList, TimerIntgPoint, TimerIntgPerstep, TimerIntgFieldMapping, TimerIntgStepRelation, \
     TimerRunDetail, TimerLastRunLog, TimerRunLog
+
+@csrf_exempt
+def timer_export(request):
+    if request.method == 'GET':
+        try:
+            integration_point_name = request.GET.get('integration_point_name')
+            integration_point_version = request.GET.get('integration_point_version')
+            # 导出 list 表数据
+            intg_list = IntgList.objects.filter(integration_point_name=integration_point_name,
+                                                integration_point_version=integration_point_version)
+            # 导出 timer 四张表数据
+            timerIntgPoint = TimerIntgPoint.objects.filter(integration_point_name=integration_point_name,
+                                                           integration_point_version=integration_point_version)
+
+            timerIntgPersteps = TimerIntgPerstep.objects.filter(intg_id=timerIntgPoint.values('id')) if timerIntgPoint.exists() else None
+
+            timerIntgStepRelations = TimerIntgStepRelation.objects.filter(
+                Q(from_step_id__in=timerIntgPersteps.values('id'))
+                | Q(to_step_id__in=timerIntgPersteps.values('id'))) if timerIntgPersteps else None
+            timerIntgFieldMappings = TimerIntgFieldMapping.objects.filter(
+                Q(from_field_id__in=timerIntgPersteps.values('id'))
+                | Q(to_field_id__in=timerIntgPersteps.values('id'))) if timerIntgPersteps else None
+
+            # 导出频率信息
+            cronMeta = CronMeta.objects.filter(task_type='Timer', task_name=''.join(
+                [integration_point_name, '_', integration_point_version]))
+            # 导出排它信息
+            excludeDispatch = ExcludeDispatch.objects.filter(task_type='Timer', task_name=''.join(
+                [integration_point_name, '_', integration_point_version]))
+            # 导出时间戳信息
+            sync_time_log = SyncTimeLog.objects.filter(task_type='Timer', task_name=''.join(
+                [integration_point_name, '_', integration_point_version]))
+            # 查询资源组信息
+            source_db_conn = Resource.objects.filter(resource_name=timerIntgPoint.values('source_db_conn'))
+            target_db_conn = Resource.objects.filter(resource_name=timerIntgPoint.values('target_db_conn'))
+
+            def append(archive, file_name, data):
+                if data.count() > 0:
+                    # 先序列化再转进行格式化缩进
+                    archive.writestr(file_name, json.dumps(json.loads(serializers.serialize('json', data)), indent=4))
+
+            temp = tempfile.TemporaryFile()
+            archive = zipfile.ZipFile(temp, 'a', zipfile.ZIP_DEFLATED, False)
+            append(archive=archive,file_name='list.json',data=intg_list)
+            append(archive=archive,file_name='timerIntgPoint.json',data=timerIntgPoint)
+            append(archive=archive,file_name='timerIntgPersteps.json',data=timerIntgPersteps)
+            append(archive=archive,file_name='timerIntgStepRelations.json',data=timerIntgStepRelations)
+            append(archive=archive,file_name='timerIntgFieldMappings.json',data=timerIntgFieldMappings)
+            append(archive=archive,file_name='cronMeta.json',data=cronMeta)
+            append(archive=archive,file_name='excludeDispatch.json',data=excludeDispatch)
+            append(archive=archive,file_name='sync_time_log.json',data=sync_time_log)
+            append(archive=archive,file_name='source_db_conn.json',data=source_db_conn)
+            append(archive=archive,file_name='target_db_conn.json',data=target_db_conn)
+            archive.close()
+
+            file_length = temp.tell()    # Python文件操作tell()方法: 这种方法简单地返回文件的当前位置读/写指针在文件
+            temp.seek(0)
+
+            # 下载的压缩包名称
+            filename = ''.join([integration_point_name, '_', integration_point_version, '.zip'])
+            # from django.core.servers.basehttp import FileWrapper 1.9之后废弃
+            # from wsgiref.util import FileWrapper                 新版使用
+            wrapper = FileWrapper(temp)
+            response = HttpResponse(wrapper, content_type='application/zip')
+            response['Content-Disposition'] = 'attachment; filename={0}'.format(filename)
+            response['Content-Length'] = file_length
+            return response
+        except Exception as e:
+            print(e)
+
+
 
 @csrf_exempt
 def timer_run_trigger(request):
