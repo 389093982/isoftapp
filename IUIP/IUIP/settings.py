@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'quartz',
     'timer',
     'resources',
+    'publisher',
 ]
 
 MIDDLEWARE = [

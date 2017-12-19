@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^resources/', include('resources.urls')),
     url(r'^timer/', include('timer.urls')),
     url(r'^quartz/', include('quartz.urls')),
+    url(r'^publisher/', include('publisher.urls')),
     url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_URL}, name='static'),
 ]

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# 集成配置环境表单
 from django import forms
 
 from index.models import Environment
@@ -8,6 +7,7 @@ from resources.models import Client
 from timer.models import IntgList
 
 
+# 集成配置环境表单
 class IntgConfigForm(forms.Form):
     def __init__(self,*args,**kwargs):
         super(IntgConfigForm,self).__init__(*args,**kwargs)
