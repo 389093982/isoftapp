@@ -4,6 +4,13 @@ from django.forms import ModelForm
 
 from appmanager.models import AppId
 
+class AppIdUpdateForm(ModelForm):
+    class Meta:
+        model = AppId
+        fields = ('app_owner','created_by')
+
+    app_owner = forms.CharField(error_messages={'required':u'app_owner 不能为空'})
+    created_by = forms.CharField(error_messages={'required':u'created_by 不能为空'})
 
 class AppIdForm(ModelForm):
     class Meta:
@@ -28,3 +35,4 @@ class AppIdForm(ModelForm):
             self._errors['app_name'] = self.error_class([msg])
             del cleaned_data['app_name']
         return cleaned_data
+

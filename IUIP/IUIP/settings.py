@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'timer',
     'resources',
     'publisher',
+    'monitor',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'django.middleware.transaction.TransactionMiddleware',          # 事务控制中间件,TransactionMiddleware将会在1.8版本删除
     # 'IUIP.middleware.LoginMiddleware',          # 登录拦截中间件
+    'IUIP.middleware.UserMenuMiddlewareMixin',    # 菜单中间件,管理菜单的
 ]
 
 ROOT_URLCONF = 'IUIP.urls'
@@ -188,6 +190,17 @@ LOGGING = {
     }
 }
 
-Timer_DOWNLOAD_PATH = os.path.join(BASE_DIR, "download"),
-
 quartz_apscheduler_job_stroe_url = 'mysql://root:123456@localhost/quartz_apscheduler_job'
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,7 +15,6 @@ class TimerActiveMQListener(ActiveMQListener):
         self.executor = ThreadPoolExecutor(100)
 
     def on_error(self, headers, message):
-        print(headers)
         print('received an error %s' % message)
 
     def on_message(self, headers, message):
@@ -50,7 +49,7 @@ class TimerActiveMQListener(ActiveMQListener):
 if __name__ == '__main__':
     try:
         activeMQManager = ActiveMQManager(listener=TimerActiveMQListener())
-        destination = '/queue/quartz/scheduler'
+        destination = '/queue/quartz/timer/scheduler'
         activeMQManager.subscribe(destination=destination)
     except Exception as e:
         print(str(e))

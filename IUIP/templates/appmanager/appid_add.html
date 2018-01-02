@@ -1,59 +1,41 @@
 {% extends 'common/layout.html' %}
 {% load staticfiles %}
-{% block title %}应用注册{% endblock %}
 {% block style %}
-    <link rel="stylesheet" type="text/css" href="{% static 'appmanager/style/appid_add.css' %}" />
+    <link href="{% static 'appmanager/style/appid_add.css' %}" rel="stylesheet">
 {% endblock %}
 {% block script %}
     <script src="{% static 'appmanager/js/appid_add.js' %}"></script>
 {% endblock %}
-{% block main %}
-
-<!--    <form class="form-inline" method="post">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group" style="width:45%;">
-                <label for="d" style="width:30%;">{{ field.label_tag }}</label>
-                <input type="text" name="{{ field.name }}" class="form-control" id="d" placeholder="请输入有效的值">
-                {{ field.errors }}
-            </div>
-        {% endfor %}
-        <div class="form-group" style="width:45%;text-align:center;">
-            <button type="submit" name="submit" class="btn btn-success">提交</button>
-            <button type="button" name="ResetButton" class="btn btn-success">重置</button>
-        </div>
-    </form>
-
-    <form  id="appId_add_submit" class="am-form am-form-horizontal">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="am-form-group am-form-success am-form-icon am-form-feedback">
-                <input type="text" class="am-form-field" name="{{ field.name }}" placeholder="{{ field.name }}"/>
-                <span class="am-icon-check"></span>
-            </div>
-        {% endfor %}
-        <button type="submit" class="am-btn am-btn-primary am-btn-block">确定</button>
-    </form>-->
-
-<div style="margin:0 auto;width:50%;margin-top:100px;">
+{% block center %}
+<div id="p" class="easyui-panel" title="注册app_id" fit="true" style="padding:10px;">
     <form class="am-form am-form-horizontal" method="post">
         {% csrf_token %}
         {% for field in form %}
-            <div class="am-form-group am-form-success am-form-icon am-form-feedback">
-                <label for="{{ field.name }}" class="am-u-sm-2 am-form-label">{{ field.name }}</label>
-                <div class="am-u-sm-10">
-                    <input name="{{ field.name }}" type="text" id="{{ field.name }}" class="am-form-field"
-                           value="{{ field.value | default_if_none:'' }}"/>
-                    {{ field.errors }}
-                </div>
+            <div style="margin-bottom:20px">
+                <div style="margin-bottom:5px;">{{ field.name }}:</div>
+                {% if edit %}
+                    {% ifequal field.name 'app_id' %}
+                        <input class="easyui-textbox" style="width:50%;height:32px" readonly="readonly" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}"/>
+                    {% endifequal %}
+                    {% ifequal field.name 'app_name' %}
+                        <input class="easyui-textbox" style="width:50%;height:32px" readonly="readonly" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}"/>
+                    {% endifequal %}
+                    {% ifequal field.name 'app_owner' %}
+                        <input class="easyui-textbox" style="width:50%;height:32px" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}"/>
+                    {% endifequal %}
+                    {% ifequal field.name 'created_by' %}
+                        <input class="easyui-textbox" style="width:50%;height:32px" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}"/>
+                    {% endifequal %}
+                {% else %}
+                    <input class="easyui-textbox" style="width:50%;height:32px" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}"/>
+                {% endif %}
+                <div style="width:50%;">{{ field.errors }}</div>
             </div>
         {% endfor %}
-        <div class="am-form-group">
-            <div class="am-u-sm-10 am-u-sm-offset-2">
-                <button type="submit" class="am-btn am-btn-success">确定</button>
-            </div>
-        </div>
+        <div style="width:50%;margin-top:30px;">
+			<button class="easyui-linkbutton" iconCls="icon-ok" type="submit" style="width:50%;height:32px">确定</button>
+			<button class="easyui-linkbutton" iconCls="icon-ok" type="submit" style="width:50%;height:32px">确定</button>
+		</div>
     </form>
 </div>
-
 {% endblock %}

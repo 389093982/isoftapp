@@ -13,7 +13,7 @@ Date: 2014-11-05
   min-width: 350px;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #555;
+  color: #555; 
   vertical-align: middle;
   position: relative;
   outline: none;
@@ -23,7 +23,7 @@ Date: 2014-11-05
   padding: 6px;
   background-color: #fff;
   background-image: none;
-  border: 1px solid #ccc;
+  border: 1px solid #95B8E7;
   border-radius: 4px;
   min-height: 30px;
   box-sizing: border-box;
@@ -50,7 +50,7 @@ Date: 2014-11-05
 .searchable-select-dropdown {
   position: absolute;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #95B8E7;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   padding: 4px;
@@ -63,7 +63,7 @@ Date: 2014-11-05
 
 .searchable-select-input {
   margin-top: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #95B8E7;
   outline: none;
   padding: 4px;
   width: 100%;

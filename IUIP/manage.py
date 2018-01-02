@@ -3,7 +3,7 @@ import os
 import sys
 import threading
 
-from quartz.core.scheduler import JobManager
+from quartz.core.timer_scheduler import JobManager
 
 def quartz_initial():
     a = JobManager()

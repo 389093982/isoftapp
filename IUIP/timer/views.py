@@ -15,8 +15,8 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from isoft.common import dbutil
-from quartz.core import scheduler
-from quartz.core.scheduler import deleteExclude, addCronMeta, deleteCronMeta, JobManager, addExclude
+from quartz.core import timer_scheduler
+from quartz.core.timer_scheduler import deleteExclude, addCronMeta, deleteCronMeta, JobManager, addExclude
 from quartz.models import CronMeta, SyncTimeLog, ExcludeDispatch
 from resources.models import Resource
 from timer.forms import IntgConfigForm
@@ -101,12 +101,15 @@ def timer_run_trigger(request):
         try:
             task_type = request.GET.get('task_type')
             task_name = request.GET.get('task_name')
-            scheduler.quartz_execute(task_type=task_type,task_name=task_name)
+            timer_scheduler.quartz_execute(task_type=task_type, task_name=task_name)
             response_data['status'] = 'SUCCESS'
+            response_data['msg'] = 'SUCCESS'
         except Exception as e:
             response_data['status'] = 'ERROR'
+            response_data['msg'] = '调度失败:' + str(e)
     else:
         response_data['status'] = 'ERROR'
+        response_data['msg'] = '调度失败!'
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
@@ -277,9 +280,9 @@ def intg_start(request):
             task_name = ''.join([integration_point_name, '_', integration_point_version])
             crons = CronMeta.objects.filter(task_type=task_type, task_name=task_name)
             job_manager.reload_job(crons)
-            return HttpResponse(json.dumps({'status': 'SUCCESS', 'result': 'SUCCESS'}))
+            return HttpResponse(json.dumps({'status': 'SUCCESS', 'msg': 'SUCCESS'}))
         except Exception as e:
-            return HttpResponse(json.dumps({'status': 'ERROR', 'result': 'deploy failed:' + str(e)}))
+            return HttpResponse(json.dumps({'status': 'ERROR', 'msg': 'start failed:' + str(e)}))
 
 
 def intg_stop(request):
@@ -297,9 +300,9 @@ def intg_stop(request):
             # 添加/更新任务
             job_manager = JobManager()
             job_manager.delete_job(task_type=task_type, task_name=task_name)
-            return HttpResponse(json.dumps({'status': 'SUCCESS', 'result': 'SUCCESS'}))
+            return HttpResponse(json.dumps({'status': 'SUCCESS', 'msg': 'SUCCESS'}))
         except Exception as e:
-            return HttpResponse(json.dumps({'status': 'ERROR', 'result': 'deploy failed:' + str(e)}))
+            return HttpResponse(json.dumps({'status': 'ERROR', 'msg': 'stop failed:' + str(e)}))
 
 
 def intg_deploy(request):
@@ -331,9 +334,9 @@ def intg_deploy(request):
             IntgList.objects.filter(integration_point_name=integration_point_name,
                                     integration_point_version=integration_point_version).update(
                 status=2)
-            return HttpResponse(json.dumps({'status': 'SUCCESS', 'result': 'SUCCESS'}))
+            return HttpResponse(json.dumps({'status': 'SUCCESS', 'msg': 'SUCCESS'}))
         except Exception as e:
-            return HttpResponse(json.dumps({'status': 'ERROR', 'result': 'deploy failed:' + str(e)}))
+            return HttpResponse(json.dumps({'status': 'ERROR', 'msg': 'deploy failed:' + str(e)}))
 
 
 @csrf_exempt
@@ -342,28 +345,31 @@ def intg_del(request):
         try:
             integration_point_name = request.GET['integration_point_name']
             integration_point_version = request.GET['integration_point_version']
-            # 删除 List 表
-            IntgList.objects.filter(integration_point_name=integration_point_name,
-                                    integration_point_version=integration_point_version).delete()
-            # 删除 Timer 四张表
-
-            timerIntgPoint = TimerIntgPoint.objects.filter(integration_point_name=integration_point_name,
-                                                           integration_point_version=integration_point_version).first()
-            if timerIntgPoint is not None:
-                timerIntgPersteps = TimerIntgPerstep.objects.filter(intg_id=timerIntgPoint.id)
-                timerIntgStepRelations = TimerIntgStepRelation.objects.filter(
-                    Q(from_step_id__in=timerIntgPersteps.values('id'))
-                    | Q(to_step_id__in=timerIntgPersteps.values('id')))
-                timerIntgFieldMappings = TimerIntgFieldMapping.objects.filter(
-                    Q(from_field_id__in=timerIntgPersteps.values('id'))
-                    | Q(to_field_id__in=timerIntgPersteps.values('id')))
-                timerIntgFieldMappings.delete()
-                timerIntgStepRelations.delete()
-                timerIntgPersteps.delete()
-                timerIntgPoint.delete()
-            return HttpResponse(json.dumps({'status': 'SUCCESS', 'result': 'SUCCESS'}))
+            delete_timer(integration_point_name=integration_point_name, integration_point_version=integration_point_version)
+            return HttpResponse(json.dumps({'status': 'SUCCESS', 'msg': 'SUCCESS'}))
         except Exception as e:
-            return HttpResponse(json.dumps({'status': 'ERROR', 'result': 'delete failed:' + str(e)}))
+            return HttpResponse(json.dumps({'status': 'ERROR', 'msg': 'delete failed:' + str(e)}))
+
+def delete_timer(integration_point_name, integration_point_version):
+    # 删除 List 表
+    IntgList.objects.filter(integration_point_name=integration_point_name,
+                            integration_point_version=integration_point_version).delete()
+    # 删除 Timer 四张表
+
+    timerIntgPoint = TimerIntgPoint.objects.filter(integration_point_name=integration_point_name,
+                                                   integration_point_version=integration_point_version).first()
+    if timerIntgPoint is not None:
+        timerIntgPersteps = TimerIntgPerstep.objects.filter(intg_id=timerIntgPoint.id)
+        timerIntgStepRelations = TimerIntgStepRelation.objects.filter(
+            Q(from_step_id__in=timerIntgPersteps.values('id'))
+            | Q(to_step_id__in=timerIntgPersteps.values('id')))
+        timerIntgFieldMappings = TimerIntgFieldMapping.objects.filter(
+            Q(from_field_id__in=timerIntgPersteps.values('id'))
+            | Q(to_field_id__in=timerIntgPersteps.values('id')))
+        timerIntgFieldMappings.delete()
+        timerIntgStepRelations.delete()
+        timerIntgPersteps.delete()
+        timerIntgPoint.delete()
 
 
 @csrf_exempt
@@ -377,6 +383,9 @@ def saveIntgConfig(request):
         target_resource_name = request.POST.get('target_resource_name')
         sqlArray = request.POST.get('sqlArray')
         fieldMappingArray = request.POST.get('fieldMappingArray')
+
+        # 保存前先删除旧数据
+        delete_timer(integration_point_name, integration_point_version)
 
         timerIntgPoint = TimerIntgPoint()
         timerIntgPoint.integration_point_name = integration_point_name
@@ -503,8 +512,8 @@ def validateSql(request):
         try:
             dbutil.validateSql(resource_type, resource_url, resource_username, resource_password, sql)
         except Exception as e:
-            return HttpResponse(json.dumps({'status': 'ERROR', 'result': str(e)}), content_type="application/json")
-        return HttpResponse(json.dumps({'status': 'SUCCESS', 'result': 'SUCCESS'}), content_type="application/json")
+            return HttpResponse(json.dumps({'status': 'ERROR', 'msg': str(e)}), content_type="application/json")
+        return HttpResponse(json.dumps({'status': 'SUCCESS', 'msg': 'SUCCESS'}), content_type="application/json")
 
 
 def intg_edit(request):
@@ -527,7 +536,7 @@ def intg_edit(request):
         timerIntgStepRelations = TimerIntgStepRelation.objects.filter(
             Q(from_step_id__in=timerIntgPersteps.values('id'))
             | Q(to_step_id__in=timerIntgPersteps.values('id')))
-    return render(request, 'timer/intg_edit.html',
+    return render(request, 'timer/timer_edit.html',
                   {'integration_point_name': integration_point_name,
                    'integration_point_version': integration_point_version,
                    'src_resources': src_resources, 'target_resources': target_resources,
@@ -535,7 +544,7 @@ def intg_edit(request):
                    'timerIntgPoint': timerIntgPoint, 'timerIntgPersteps': timerIntgPersteps,
                    'timerIntgStepRelations': timerIntgStepRelations})
 
-
+@csrf_exempt
 def intg_config(request):
     if request.method == 'POST':
         form = IntgConfigForm(request.POST)
@@ -557,7 +566,7 @@ def intg_config(request):
             return HttpResponseRedirect('/timer/intg/list/')
     else:
         form = IntgConfigForm()
-    return render(request, 'timer/intg_config.html', {'form': form})
+    return render(request, 'timer/timer_config.html', {'form': form})
 
 
 def intg_dev(request):
@@ -566,20 +575,21 @@ def intg_dev(request):
 
 # 集成清单
 def intg_list(request):
-    return render(request, 'timer/intg_list.html')
+    return render(request, 'timer/timer_list.html')
 
 
+@csrf_exempt
 def loadIntgsData(request):
-    if request.method == "GET":
-        limit = request.GET.get('limit')
-        offset = request.GET.get('offset')
-        search = request.GET.get('search')
-        sort_column = request.GET.get('sortName')
-        order = request.GET.get('sortOrder')
-        integration_point_name = request.GET.get('integration_point_name')
-        env_name = request.GET.get('env_name')
-        source_client_name = request.GET.get('source_client_name')
-        target_client_name = request.GET.get('target_client_name')
+    if request.method == "POST":
+        limit = request.POST.get('limit')
+        offset = request.POST.get('offset')
+        search = request.POST.get('search')
+        sort_column = request.POST.get('sortName')
+        order = request.POST.get('sortOrder')
+        integration_point_name = request.POST.get('integration_point_name')
+        env_name = request.POST.get('env_name')
+        source_client_name = request.POST.get('source_client_name')
+        target_client_name = request.POST.get('target_client_name')
         if search:
             all_records = IntgList.objects.filter(Q(integration_point_name__icontains=search)
                                                   | Q(env_name__icontains=search)

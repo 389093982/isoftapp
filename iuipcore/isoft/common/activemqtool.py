@@ -22,12 +22,20 @@ class ActiveMQManager(object):
         self.conn.connect(login=activemq_jms_user, password=activemq_jms_password)
 
     # 发送消息到队列/主题
-    def send(self, body, destination):
-        self.conn.send(body=body, destination=destination)
+    def send(self, body, destination, selector=None):
+        if selector is not None:
+            # egg : stomp.put(json.dumps(Dict_Message), destination="/queue/test",conf={'Test':'Test123'})
+            self.conn.send(body=body, destination=destination, conf={selector['name'] : selector['value']})
+        else:
+            self.conn.send(body=body, destination=destination)
 
     # 从队列接受消息/主题
-    def subscribe(self, destination):
-        self.conn.subscribe(destination=destination)
+    def subscribe(self, destination, selector=None):
+        if selector is not None:
+            # egg : stomp.subscribe("/queue/test",conf={'selector' : "Test = 'Test123'"})
+            self.conn.subscribe(destination=destination, conf={'selector' : "{name} = '{value}'".format(name=selector['name'], value=selector['value'])})
+        else:
+            self.conn.subscribe(destination=destination)
 
     def disconnect(self):
         self.conn.disconnect()

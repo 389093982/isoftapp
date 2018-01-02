@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^validateSql/',validateSql),
     url(r'^getMetaData/',getMetaData),
     url(r'^saveIntgConfig/',saveIntgConfig),
-    url(r'^saveIntgConfig/',saveIntgConfig),
     url(r'^intg/del/',intg_del),
     url(r'^intg/deploy/',intg_deploy),
     url(r'^intg/stop/',intg_stop),
@@ -24,5 +23,5 @@ urlpatterns = [
     url(r'^intg/log_timer_run_log/',log_timer_run_log),
     url(r'^intg/log_timer_last_run_log/',log_timer_last_run_log),
     url(r'^intg/timer_run_trigger/',timer_run_trigger),
-    url(r'intg/export', timer_export),
+    url(r'^intg/export/', timer_export),
 ]

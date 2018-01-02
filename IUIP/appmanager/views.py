@@ -5,21 +5,22 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
-from appmanager.forms import AppIdForm
+from appmanager.forms import AppIdForm, AppIdUpdateForm
 from appmanager.models import AppId, Projects
 
-
+@csrf_exempt
 def loadProjectsData(request):
-    if request.method == "GET":
-        limit = request.GET.get('limit')
-        offset = request.GET.get('offset')
-        search = request.GET.get('search')
-        sort_column = request.GET.get('sortName')
-        order = request.GET.get('sortOrder')
-        project_id = request.GET.get('project_id')
-        project_name = request.GET.get('project_name')
-        project_appid = request.GET.get('project_appid')
+    if request.method == "POST":
+        limit = request.POST.get('limit')
+        offset = request.POST.get('offset')
+        search = request.POST.get('search')
+        sort_column = request.POST.get('sortName')
+        order = request.POST.get('sortOrder')
+        project_id = request.POST.get('project_id')
+        project_name = request.POST.get('project_name')
+        project_appid = request.POST.get('project_appid')
         if search:
             all_records = Projects.objects.filter(Q(project_id__icontains=search)
                                                | Q(project_name__icontains=search) | Q(project_appid__app_name__icontains=search))
@@ -70,34 +71,52 @@ def projects_list(request):
         return render(request,'appmanager/projects_list.html',{'app_id': app_id })
     return render(request, 'appmanager/projects_list.html')
 
-def edit(request):
-    if request.method == "GET":
-        appId = request.GET.get('appId')
-        obj = AppId.objects.get(app_id=appId)
-        form = AppIdForm(instance=obj)
-        return HttpResponseRedirect('/appmanager/add/')
+def appid_delete(request):
+    request.POST = request.POST if request.POST else request.GET
+    response_data = {}
+    try:
+        app_id = request.POST.get('app_id')
+        AppId.objects.filter(app_id=app_id).delete()
+        response_data['status'] = 'SUCCESS'
+        response_data['msg'] = '删除成功!'
+    except Exception as e:
+        response_data['status'] = 'ERROR'
+        response_data['msg'] = '删除失败!'
+    return HttpResponse(json.dumps(response_data))
 
-def loadAppIdsData(request):
-    if request.method == "GET":
-        limit = request.GET.get('limit')        # how many items per page
-        offset = request.GET.get('offset')      # how many items in total in the DB
-        search = request.GET.get('search')
-        sort_column = request.GET.get('sortName')   # which column need to sort
-        order = request.GET.get('sortOrder')        # ascending or descending
+def appid_edit(request):
+    if request.method == 'GET':
         app_id = request.GET.get('app_id')
-        app_name = request.GET.get('app_name')
-        app_owner = request.GET.get('app_owner')
-        if search:                              # 判断是否有搜索字
-            all_records = AppId.objects.filter(Q(app_id__icontains=search)
-                                               | Q(app_name__icontains=search) | Q(app_owner__icontains=search))
-        else:
-            all_records = AppId.objects.all()   # must be wirte the line code here
+        obj = AppId.objects.filter(app_id=app_id).first()
+        form = AppIdForm(instance=obj)
+    else:
+        form = AppIdUpdateForm(request.POST)
+        if form.is_valid():
+            app_id = request.POST.get('app_id')
+            app_name = request.POST.get('app_name')
+            app_owner = request.POST.get('app_owner')
+            created_by = request.POST.get('created_by')
+            AppId.objects.filter(app_id=app_id).update(app_name=app_name, app_owner=app_owner, created_by=created_by)
+            return render(request, 'appmanager/appid_list.html')
+    return render(request, 'appmanager/appid_add.html', {'form': form, 'edit':'true'})
 
-        if sort_column:                         # 判断是否有排序需求
-            if sort_column in ['app_id', 'app_name', 'app_owner']:  # 如果排序的列表在这些内容里面
+@csrf_exempt
+def loadAppIdsData(request):
+    if request.method == "POST":
+        page = request.POST.get('page')
+        rows = request.POST.get('rows')
+        sort = request.POST.get('sort')
+        order = request.POST.get('order')
+        app_id = request.POST.get('app_id')
+        app_name = request.POST.get('app_name')
+        app_owner = request.POST.get('app_owner')
+        all_records = AppId.objects.all()   # must be wirte the line code here
+
+        if sort:                         # 判断是否有排序需求
+            if sort in ['app_id', 'app_name', 'app_owner']:  # 如果排序的列表在这些内容里面
                 if order == 'desc':             # 如果排序是反向
-                    sort_column = '-%s' % (sort_column)
-                all_records = all_records.order_by(sort_column)
+                    sort = '-%s' % (sort)
+                all_records = all_records.order_by(sort)
 
         if app_id:
             all_records = all_records.filter(app_id__icontains=app_id)
@@ -108,13 +127,10 @@ def loadAppIdsData(request):
 
         all_records_count = all_records.count()
 
-        if not offset:
-            offset = 0
-        if not limit:
-            limit = 20                              # 默认是每页20行的内容，与前端默认行数一致
-        pageinator = Paginator(all_records, limit)  # 开始做分页
+        page = int(page) if page is not None else 1
+        rows = int(rows) if rows is not None else 10
+        pageinator = Paginator(all_records, rows)  # 开始做分页
 
-        page = int(int(offset) / int(limit) + 1)
         # 必须带有rows和total这2个key，total表示总页数，rows表示每行的内容
         response_data = {'total': all_records_count, 'rows': []}
         for appId in pageinator.page(page):

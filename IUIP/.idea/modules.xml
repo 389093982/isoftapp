@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IUIP.iml" filepath="$PROJECT_DIR$/.idea/IUIP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Publisher/.idea/Publisher.iml" filepath="$PROJECT_DIR$/../Publisher/.idea/Publisher.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Timer/.idea/Timer.iml" filepath="$PROJECT_DIR$/../Timer/.idea/Timer.iml" />
       <module fileurl="file://$PROJECT_DIR$/../iuipcore/.idea/iuipcommon.iml" filepath="$PROJECT_DIR$/../iuipcore/.idea/iuipcommon.iml" />
       <module fileurl="file://$PROJECT_DIR$/../iuipcore/.idea/iuipcore.iml" filepath="$PROJECT_DIR$/../iuipcore/.idea/iuipcore.iml" />

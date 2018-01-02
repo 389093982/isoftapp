@@ -23,73 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/publisher/views.py">
+      <file leaf-file-name="publisher_test.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#24#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="publisher_edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="publisher_edit.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/publisher/style/publisher_edit.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Timer/timer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4752">
-              <caret line="211" column="40" selection-start-line="211" selection-start-column="31" selection-end-line="211" selection-end-column="40" />
-              <folding>
-                <element signature="e#40#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="publisher_edit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_edit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1128">
-              <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+            <state relative-caret-position="192">
+              <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -113,57 +51,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../SetUp/build/lib/isoft/common/activemqtool.py" />
-        <option value="$PROJECT_DIR$/../SetUp/setup.py" />
-        <option value="$PROJECT_DIR$/../Timer/a.py" />
-        <option value="$PROJECT_DIR$/../iuipcommon/setup.py" />
-        <option value="$PROJECT_DIR$/../iuipcommon/isoft/config/mqconfig.py" />
-        <option value="$PROJECT_DIR$/../iuipcommon/isoft/common/activemqtool.py" />
-        <option value="$PROJECT_DIR$/../iuipcore/isoft/config/urlconfig.py" />
-        <option value="$PROJECT_DIR$/quartz/views.py" />
-        <option value="$PROJECT_DIR$/../iuipcore/isoft/constant/constant.py" />
-        <option value="$PROJECT_DIR$/../iuipcore/isoft/constant/base.py" />
-        <option value="$PROJECT_DIR$/resources/models.py" />
-        <option value="$PROJECT_DIR$/../Timer/httputil.py" />
-        <option value="$PROJECT_DIR$/resources/views.py" />
-        <option value="$PROJECT_DIR$/static/common/jQuery-searchableSelect/jquery.searchableSelect.css" />
-        <option value="$PROJECT_DIR$/static/timer/style/intg_edit.css" />
-        <option value="$PROJECT_DIR$/templates/timer/intg_edit.html" />
-        <option value="$PROJECT_DIR$/quartz/models.py" />
-        <option value="$PROJECT_DIR$/../Timer/threadlocal.py" />
-        <option value="$PROJECT_DIR$/../Timer/timerlog.py" />
-        <option value="$PROJECT_DIR$/templates/timer/intg_config.html" />
-        <option value="$PROJECT_DIR$/../Timer/main.py" />
-        <option value="$PROJECT_DIR$/static/timer/js/intg_edit.js" />
-        <option value="$PROJECT_DIR$/../iuipcore/isoft/common/dbutil.py" />
-        <option value="$PROJECT_DIR$/quartz/core/scheduler.py" />
-        <option value="$PROJECT_DIR$/templates/common/layout.html" />
-        <option value="$PROJECT_DIR$/static/timer/style/intg_list.css" />
-        <option value="$PROJECT_DIR$/templates/timer/intg_list.html" />
-        <option value="$PROJECT_DIR$/timer/models.py" />
-        <option value="$PROJECT_DIR$/timer/urls.py" />
-        <option value="$PROJECT_DIR$/static/timer/js/intg_list.js" />
+        <option value="$PROJECT_DIR$/templates/timer/timer_config_.html" />
+        <option value="$PROJECT_DIR$/static/timer/js/timer_edit.js" />
+        <option value="$PROJECT_DIR$/templates/timer/timer_edit_.html" />
         <option value="$PROJECT_DIR$/timer/views.py" />
-        <option value="$PROJECT_DIR$/../Timer/timer.py" />
-        <option value="$PROJECT_DIR$/IUIP/settings.py" />
-        <option value="$PROJECT_DIR$/IUIP/urls.py" />
-        <option value="$PROJECT_DIR$/timer/forms.py" />
+        <option value="$PROJECT_DIR$/mtplib/views.py" />
+        <option value="$PROJECT_DIR$/templates/index/left_menu_.html" />
+        <option value="$PROJECT_DIR$/static/index/style/left_menu.css" />
+        <option value="$PROJECT_DIR$/templates/common/layout_.html" />
+        <option value="$PROJECT_DIR$/templates/index/index.html" />
+        <option value="$PROJECT_DIR$/mtplib/test.py" />
+        <option value="$PROJECT_DIR$/mtplib/mtptask.py" />
+        <option value="$PROJECT_DIR$/mtplib/models.py" />
+        <option value="$PROJECT_DIR$/monitor/models.py" />
+        <option value="$PROJECT_DIR$/quartz/core/scheduler.py" />
+        <option value="$PROJECT_DIR$/monitor/core/monitortask.py" />
+        <option value="$PROJECT_DIR$/templates/appmanager/appid_add.html" />
+        <option value="$PROJECT_DIR$/templates/appmanager/appid_list.html" />
+        <option value="$PROJECT_DIR$/templates/appmanager/projects_list.html" />
+        <option value="$PROJECT_DIR$/templates/timer/timer_list.html" />
+        <option value="$PROJECT_DIR$/templates/index/index_.html" />
+        <option value="$PROJECT_DIR$/static/publisher/style/publisher_config.css" />
+        <option value="$PROJECT_DIR$/templates/timer/timer_config.html" />
         <option value="$PROJECT_DIR$/templates/publisher/publisher_list.html" />
+        <option value="$PROJECT_DIR$/static/appmanager/js/appid_list.js" />
+        <option value="$PROJECT_DIR$/templates/timer/timer_edit.html" />
+        <option value="$PROJECT_DIR$/templates/index/func_menu.html" />
+        <option value="$PROJECT_DIR$/static/publisher/style/publisher_edit.css" />
+        <option value="$PROJECT_DIR$/index/menu.py" />
+        <option value="$PROJECT_DIR$/IUIP/middleware.py" />
         <option value="$PROJECT_DIR$/templates/index/left_menu.html" />
-        <option value="$PROJECT_DIR$/static/publisher/style/publisher_list.css" />
-        <option value="$PROJECT_DIR$/static/publisher/js/publisher_config.js.py" />
-        <option value="$PROJECT_DIR$/static/publisher/js/publisher_config.js" />
-        <option value="$PROJECT_DIR$/publisher/forms.py" />
+        <option value="$PROJECT_DIR$/templates/publisher/publisher_edit.html" />
+        <option value="$PROJECT_DIR$/timer/urls.py" />
+        <option value="$PROJECT_DIR$/publisher/models.py" />
+        <option value="$PROJECT_DIR$/static/publisher/js/publisher_edit.js" />
         <option value="$PROJECT_DIR$/templates/publisher/publisher_config.html" />
         <option value="$PROJECT_DIR$/static/publisher/js/publisher_list.js" />
-        <option value="$PROJECT_DIR$/static/publisher/style/publisher_config.css" />
-        <option value="$PROJECT_DIR$/publisher/models.py" />
-        <option value="$PROJECT_DIR$/publisher/urls.py" />
-        <option value="$PROJECT_DIR$/../Timer/timer_bak.py" />
+        <option value="$PROJECT_DIR$/static/publisher/js/publisher_config.js" />
+        <option value="$PROJECT_DIR$/templates/publisher/publisher_test.html" />
+        <option value="$PROJECT_DIR$/quartz/core/timer_scheduler.py" />
+        <option value="$PROJECT_DIR$/../Timer/main.py" />
+        <option value="$PROJECT_DIR$/software/models.py" />
+        <option value="$PROJECT_DIR$/IUIP/settings.py" />
+        <option value="$PROJECT_DIR$/IUIP/cmd/kafka.txt" />
+        <option value="$PROJECT_DIR$/../iuipcore/isoft/common/activemqtool.py" />
+        <option value="$PROJECT_DIR$/quartz/core/publisher_scheduler.py" />
+        <option value="$PROJECT_DIR$/../Timer/timerlog.py" />
         <option value="$PROJECT_DIR$/publisher/views.py" />
-        <option value="$PROJECT_DIR$/static/publisher/js/publisher_edit.js" />
-        <option value="$PROJECT_DIR$/templates/publisher/publisher_edit.html" />
-        <option value="$PROJECT_DIR$/static/publisher/style/publisher_edit.css" />
+        <option value="$PROJECT_DIR$/publisher/urls.py" />
+        <option value="$PROJECT_DIR$/../Publisher/publisher.py" />
+        <option value="$PROJECT_DIR$/static/publisher/js/publisher_test.js" />
+        <option value="$PROJECT_DIR$/../Publisher/main.py" />
       </list>
     </option>
   </component>
@@ -209,7 +147,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -222,7 +160,20 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IUIP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
@@ -241,11 +192,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\templates\publisher" />
-      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\static\publisher\js" />
-      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\publisher" />
+      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\Publisher" />
+      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\software" />
       <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\static\common\js" />
-      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\static\common" />
+      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\templates\timer" />
+      <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\IUIP\templates\appmanager" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\zhourui\program\python\pycharm_workspace\IsoftApp\SetUp\isoft" />
@@ -266,88 +217,108 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.python manage.py runserver --noreload">
-    <configuration default="false" name="dbutil" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.main (1)">
+    <configuration default="false" name="Unittests in testHTTPServer_RequestHandler (4)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../iuipcore/isoft/common" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Publisher" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="iuipcore" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../iuipcore/isoft/common/dbutil.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <module name="Publisher" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Publisher/main.py" />
+      <option name="CLASS_NAME" value="testHTTPServer_RequestHandler" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="timer" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Unittests in testHTTPServer_RequestHandler" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Timer" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Publisher" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Timer" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Timer/timer.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <module name="Publisher" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Publisher/main.py" />
+      <option name="CLASS_NAME" value="testHTTPServer_RequestHandler" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="timerlog" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Unittests in testHTTPServer_RequestHandler (5)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Timer" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Publisher" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Timer" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Timer/timerlog.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <module name="Publisher" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Publisher/main.py" />
+      <option name="CLASS_NAME" value="testHTTPServer_RequestHandler" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="views (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Unittests in testHTTPServer_RequestHandler (1)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/publisher" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Publisher" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="IUIP" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/publisher/views.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <module name="Publisher" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Publisher/main.py" />
+      <option name="CLASS_NAME" value="testHTTPServer_RequestHandler" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="timer_bak" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Timer" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Publisher" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Timer" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Timer/timer_bak.py" />
+      <module name="Publisher" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Publisher/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -511,19 +482,19 @@
       <item index="3" class="java.lang.String" itemvalue="Python.python setup develop" />
       <item index="4" class="java.lang.String" itemvalue="Python.python setup install" />
       <item index="5" class="java.lang.String" itemvalue="Python.main" />
-      <item index="6" class="java.lang.String" itemvalue="Python.dbutil" />
-      <item index="7" class="java.lang.String" itemvalue="Python.timer" />
-      <item index="8" class="java.lang.String" itemvalue="Python.timerlog" />
-      <item index="9" class="java.lang.String" itemvalue="Python.views (1)" />
-      <item index="10" class="java.lang.String" itemvalue="Python.timer_bak" />
+      <item index="6" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler (4)" />
+      <item index="7" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler" />
+      <item index="8" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler (5)" />
+      <item index="9" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler (1)" />
+      <item index="10" class="java.lang.String" itemvalue="Python.main (1)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.timer_bak" />
-        <item index="1" class="java.lang.String" itemvalue="Python.views (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Python.timer" />
-        <item index="3" class="java.lang.String" itemvalue="Python.timerlog" />
-        <item index="4" class="java.lang.String" itemvalue="Python.dbutil" />
+        <item index="0" class="java.lang.String" itemvalue="Python.main (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler (5)" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in testHTTPServer_RequestHandler (4)" />
       </list>
     </recent_temporary>
   </component>
@@ -726,6 +697,35 @@
     <option name="localTasksCounter" value="27" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_in_main - 2018.01.01 at 22h 45m 33s.xml">
+      <configuration name="Unittests in main" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler - 2018.01.01 at 22h 45m 21s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler - 2018.01.01 at 22h 51m 49s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler_(1) - 2018.01.01 at 22h 47m 05s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler_(1) - 2018.01.01 at 22h 54m 57s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler_(2) - 2018.01.01 at 22h 48m 05s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler (2)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler_(3) - 2018.01.01 at 22h 50m 22s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler (3)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler_(4) - 2018.01.01 at 22h 50m 37s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler (4)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_testHTTPServer_RequestHandler_(5) - 2018.01.01 at 22h 52m 27s.xml">
+      <configuration name="Unittests in testHTTPServer_RequestHandler (5)" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -739,51 +739,28 @@
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3319194" sideWeight="0.485782" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23223753" sideWeight="0.485782" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3850711" sideWeight="0.51060444" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43127963" sideWeight="0.3011665" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32779098" sideWeight="0.49787912" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56398106" sideWeight="0.4724284" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497349" sideWeight="0.49526066" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3319194" sideWeight="0.51421803" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33172563" sideWeight="0.51421803" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43127963" sideWeight="0.6988335" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36611375" sideWeight="0.48939556" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42755345" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61255926" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5663507" sideWeight="0.49363732" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991362" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3850711" sideWeight="0.51060444" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32779098" sideWeight="0.49787912" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36611375" sideWeight="0.48939556" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42755345" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3319194" sideWeight="0.485782" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61255926" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497349" sideWeight="0.49526066" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3319194" sideWeight="0.51421803" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5663507" sideWeight="0.49363732" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991362" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -825,355 +802,315 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="118" />
+      <option name="time" value="155" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/quartz/core/scheduler.py">
+    <entry file="file://$PROJECT_DIR$/static/common/jQuery-searchableSelect/jquery.searchableSelect.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+        <state relative-caret-position="398">
+          <caret line="137" column="26" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/common/jquery_tooltip/demo/style.css" />
-    <entry file="file://$PROJECT_DIR$/static/common/js/jquery-1.11.3.min.js">
+    <entry file="file://$PROJECT_DIR$/timer/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/timer/timer_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/timer/js/timer_edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2921">
+          <caret line="186" column="14" selection-start-line="186" selection-start-column="14" selection-end-line="186" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/publisher/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/common/layout.html">
+    <entry file="file://$PROJECT_DIR$/publisher/migrations/0002_auto_20171217_1224.py" />
+    <entry file="file://$PROJECT_DIR$/publisher/migrations/0003_publisherrouter_status.py" />
+    <entry file="file://$PROJECT_DIR$/publisher/migrations/0004_auto_20171217_1424.py" />
+    <entry file="file://$PROJECT_DIR$/publisher/migrations/0005_publisherrouter_business_meaning.py" />
+    <entry file="file://$PROJECT_DIR$/publisher/migrations/0006_auto_20171231_2213.py" />
+    <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="12" column="100" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1446">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/timer/js/timer_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="167" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/timer/js/timer_config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/common/jquery_tooltip/jquery.mytooltip.js" />
-    <entry file="file://$PROJECT_DIR$/static/common/jquery_tooltip/demo/script.js" />
-    <entry file="file://$PROJECT_DIR$/static/common/jquery_tooltip/index.html" />
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/common.rnc">
+    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="124" column="18" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
+        <state relative-caret-position="96">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/timer/intg_list.html">
+    <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_config.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="573">
+          <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/pyenv/python3.6/Lib/site-packages/django/core/servers/basehttp.py">
+    <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2953">
+        <state relative-caret-position="264">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/publisher/style/publisher_test.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../iuipcore/isoft/common/dbutil.py">
+    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        <state relative-caret-position="608">
+          <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="189" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Timer/timerlog.py">
+    <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        <state relative-caret-position="604">
+          <caret line="64" column="38" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="38" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/publisher/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/timer/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3408">
+          <caret line="145" column="80" selection-start-line="145" selection-start-column="80" selection-end-line="145" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appmanager/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/software/models.py" />
+    <entry file="file://$PROJECT_DIR$/software/views.py" />
+    <entry file="file://$PROJECT_DIR$/software/urls.py" />
     <entry file="file://$PROJECT_DIR$/IUIP/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quartz/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="34" />
+        <state relative-caret-position="524">
+          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IUIP/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quartz/views.py">
+    <entry file="file://$PROJECT_DIR$/IUIP/cmd/kafka.txt" />
+    <entry file="file://$PROJECT_DIR$/IUIP/cmd/activemq.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="18" column="52" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
+        <state relative-caret-position="48">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index/left_menu.html">
+    <entry file="jar://$PROJECT_DIR$/../../../../../soft/install/python/pyenv/python3.6/Lib/site-packages/stomp.py-4.1.20-py3.6.egg!/stomp/protocol.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        <state relative-caret-position="80">
+          <caret line="148" column="8" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/publisher/style/publisher_list.css">
+    <entry file="file://$PROJECT_DIR$/../iuipcore/isoft/config/mqconfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../iuipcore/isoft/config/urlconfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Timer/timer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/timer/style/intg_list.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/timer/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_config.js.py" />
-    <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/pyenv/python3.6/Lib/site-packages/django/forms/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="177" column="8" selection-start-line="177" selection-start-column="8" selection-end-line="177" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/timer/js/intg_config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/timer/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/publisher/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_config.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/timer/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="707">
-          <caret line="163" column="31" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/timer/intg_config.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="38" column="40" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/publisher/style/publisher_config.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/timer/style/intg_config.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/timer/style/intg_edit.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/publisher/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/timer/intg_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2712">
-          <caret line="113" column="60" selection-start-line="113" selection-start-column="45" selection-end-line="113" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/timer/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12024">
-          <caret line="522" column="28" selection-start-line="522" selection-start-column="28" selection-end-line="522" selection-end-column="28" />
+        <state relative-caret-position="330">
+          <caret line="103" column="36" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/timer/js/intg_edit.js">
+    <entry file="file://$PROJECT_DIR$/quartz/core/timer_scheduler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7968">
-          <caret line="332" column="8" selection-start-line="332" selection-start-column="8" selection-end-line="332" selection-end-column="86" />
+        <state relative-caret-position="-10">
+          <caret line="95" column="4" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/timer/js/intg_list.js">
+    <entry file="file://$PROJECT_DIR$/../Timer/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="176" column="95" selection-start-line="176" selection-start-column="95" selection-end-line="176" selection-end-column="95" />
+        <state relative-caret-position="48">
+          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/publisher/urls.py">
+    <entry file="file://$PROJECT_DIR$/quartz/core/publisher_scheduler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        <state relative-caret-position="192">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Timer/timer_bak.py" />
-    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/pyenv/python3.6/Lib/site-packages/django/utils/deprecation.py">
+    <entry file="file://$PROJECT_DIR$/../iuipcore/isoft/common/activemqtool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3264">
-          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+        <state relative-caret-position="269">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/pyenv/python3.6/Lib/site-packages/django/core/handlers/exception.py">
+    <entry file="file://$PROJECT_DIR$/../Timer/timerlog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="48">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/pyenv/python3.6/Lib/site-packages/django/core/handlers/base.py">
+    <entry file="file://$PROJECT_DIR$/IUIP/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/Python36/Lib/contextlib.py">
+    <entry file="file://$PROJECT_DIR$/index/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/pyenv/python3.6/Lib/site-packages/django/views/decorators/csrf.py">
+    <entry file="file://$PROJECT_DIR$/../Publisher/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/Python36/Lib/http/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="83">
+          <caret line="900" column="54" selection-start-line="900" selection-start-column="54" selection-end-line="920" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../soft/install/python/Python36/Lib/socketserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1808">
+          <caret line="690" column="13" selection-start-line="690" selection-start-column="13" selection-end-line="690" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/publisher/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="269">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
           <folding>
-            <element signature="e#24#35#0" expanded="true" />
+            <element signature="e#24#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Timer/timer.py">
+    <entry file="file://$PROJECT_DIR$/publisher/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4752">
-          <caret line="211" column="40" selection-start-line="211" selection-start-column="31" selection-end-line="211" selection-end-column="40" />
+        <state relative-caret-position="336">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding>
-            <element signature="e#40#51#0" expanded="true" />
+            <element signature="e#24#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_edit.js">
+    <entry file="file://$PROJECT_DIR$/../Publisher/publisher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1128">
-          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        <state relative-caret-position="72">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/publisher/publisher_edit.html">
+    <entry file="file://$PROJECT_DIR$/../Publisher/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="94">
+          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/publisher/style/publisher_edit.css">
+    <entry file="file://$PROJECT_DIR$/static/publisher/js/publisher_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+        <state relative-caret-position="192">
+          <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
           <folding />
         </state>
       </provider>

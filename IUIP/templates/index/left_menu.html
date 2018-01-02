@@ -1,48 +1,29 @@
 {% load staticfiles %}
-<script src="{% static 'index/js/left_menu.js' %}"></script>
-<div class="left_menu">
-    <div id="doc-oc-demo1" class="am-offcanvas">
-        <div class="am-offcanvas-bar">
-            <div class="am-offcanvas-content" style="color:#99FF00;">
-                <p>
-                    App管理 <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/appmanager/appid_list/">查询AppId</a> <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/appmanager/appid_add/">新增AppId</a> <br>
-                </p>
-                <p>
-                    项目管理 <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/appmanager/projects_list/">查询Project</a> <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">新增Project</a> <br>
-                </p>
-                <p>
-                    资产管理 <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/resources/client_list/">查询CI</a> <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/resources/resources_list/">查询Resource</a> <br>
-                </p>
-                <p>
-                    定时集成Timer <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/timer/intg/config/">集成配置</a> <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/timer/intg/list/">集成清单</a> <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/timer/intg/dev/">集成开发</a> <br>
-                </p>
-                <p>
-                    服务集成Publisher <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/publisher/intg/config/">路由配置</a> <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/publisher/intg/list/">集成清单</a> <br/>
-                </p>
-                <p>
-                    集成部署 <br/>
-                </p>
-                <p>
-                    集成测试 <br/>
-                </p>
-                <p>
-                    变更上线 <br/>
-                </p>
-                <p>
-                    快速运维 <br/>
-                </p>
-            </div>
-        </div>
+<link href="{% static 'index/style/left_menu.css' %}" rel="stylesheet">
+<div class="easyui-accordion left_menu" style="width:100%;height:100%;" fit="true">
+    <div title="应用管理" data-options="iconCls:'icon-ok',{% ifequal request.session.menu_type 'appid' %}selected:true{% endifequal %}">
+        <a href="/appmanager/appid_list/?menu_type=appid">查询AppId</a><br>
+        <a href="/appmanager/appid_add/?menu_type=appid">新增AppId</a><br>
+    </div>
+    <div title="项目管理" data-options="iconCls:'icon-help',{% ifequal request.session.menu_type 'project' %}selected:true{% endifequal %}">
+    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/appmanager/projects_list/?menu_type=project">查询Project</a><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a href="/appmanager/projects_add/?menu_type=project">新增Project</a> <br>
+    </div>
+    <div title="定时集成Timer" data-options="iconCls:'icon-search',{% ifequal request.session.menu_type 'timer' %}selected:true{% endifequal %}">
+        <a href="/timer/intg/config/?menu_type=timer">集成配置</a> <br/>
+        <a href="/timer/intg/list/?menu_type=timer">集成清单</a> <br>
+        <a href="/timer/intg/dev/?menu_type=timer">集成开发</a> <br>
+        <a href="#">集成部署</a> <br>
+        <a href="#">集成测试</a> <br>
+        <a href="#">变更上线</a> <br>
+        <a href="#">快速运维</a> <br>
+    </div>
+    <div title="服务集成Publisher" data-options="iconCls:'icon-search',{% ifequal request.session.menu_type 'publisher' %}selected:true{% endifequal %}">
+        <a href="/publisher/intg/config/?menu_type=publisher">路由配置</a> <br/>
+        <a href="/publisher/intg/list/?menu_type=publisher">集成清单</a> <br/>
+    </div>
+    <div title="资产管理" data-options="iconCls:'icon-search',{% ifequal request.session.menu_type 'resource' %}selected:true{% endifequal %}">
+        <a href="/resources/client_list/?menu_type=resource">查询CI</a> <br/>
+        <a href="/resources/resources_list/?menu_type=resource">查询Resource</a> <br>
     </div>
 </div>

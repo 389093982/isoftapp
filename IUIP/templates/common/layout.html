@@ -3,46 +3,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}IUIP{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'common/style/layout.css' %}" />
-    <!-- 引入 Bootstrap 和 jQuery -->
-    <link href="{% static 'common/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <title>{% block title %}IUIP集成平台{% endblock %}</title>
     <script src="{% static 'common/js/jquery-1.9.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'common/bootstrap/js/bootstrap.min.js' %}"></script>
-    <!-- 引入amaze ui -->
-    <link rel="stylesheet" href="{% static 'common/AmazeUI-2.7.2/assets/css/amazeui.min.css' %}">
-    <link rel="stylesheet" href="{% static 'common/AmazeUI-2.7.2/assets/css/app.css' %}">
-    <script src="{% static 'common/AmazeUI-2.7.2/assets/js/amazeui.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'common/jquery-easyui-1.5.3/themes/default/easyui.css' %}">
+    <link rel="stylesheet" href="{% static 'common/jquery-easyui-1.5.3/themes/icon.css' %}">
+    <script src="{% static 'common/jquery-easyui-1.5.3/jquery.easyui.min.js' %}"></script>
+    <script src="{% static 'common/jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js' %}"></script>
+    <script src="{% static 'common/jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js' %}"></script>
+    <script src="{% static 'index/js/left_menu.js' %}"></script>
     {% block style %}{% endblock %}
     {% block script %}{% endblock %}
 </head>
 <body>
-
-<!-- 链接触发器， href 属性为目标元素 ID -->
-<div class="heading" data-am-sticky>
-  <a class="am-btn am-btn-success am-btn-block" href="#doc-oc-demo1" data-am-offcanvas>IUIP 让集成更便捷</a>
-</div>
-
-
-<div class="data_content">
-    <div class="left">
-        {% block left %}
-            {% include "index/left_menu.html" %}
-        {% endblock %}
-    </div>
-    <div class="main">
-        {% block main %}main{% endblock %}
-    </div>
-    <div class="right">
-        {% block right %}{% endblock %}
-    </div>
-    <div style="clear:both;"></div>
-</div>
-<div class="footing">
-    {% block footing %}
-        {% include "index/footing.html" %}
-    {% endblock %}
-</div>
-
+	<div class="easyui-layout" style="width:100%;height:560px;">
+		<div data-options="region:'west',split:true" title="{% block left_title %}菜单项{% endblock %}" style="width:250px;">
+            {% block left %}
+                {% include "index/left_menu.html" %}
+            {% endblock %}
+        </div>
+		<div data-options="region:'center',split:true,title:'{% block center_title %}IUIP集成平台{% endblock %}',iconCls:'icon-ok'">
+            {% block center %}{% endblock %}
+        </div>
+	</div>
 </body>
 </html>
