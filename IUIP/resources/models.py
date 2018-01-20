@@ -51,6 +51,10 @@ class Resource(models.Model):
     last_updated_date = models.DateTimeField(auto_now=True)
     resource_client = models.ForeignKey(Client)
 
+    def __str__(self):
+        return 'resource_name:{resource_name},resource_type:{resource_type},resource_url:{resource_url}'\
+            .format(resource_name=self.resource_name,resource_type=self.resource_type,resource_url=self.resource_url)
+
 class ClientAdmin(admin.ModelAdmin):
     pass
 

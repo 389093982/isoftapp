@@ -136,60 +136,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        },  # 针对 DEBUG = True 的情况
-    },
-    'formatters': {
-        'standard': {
-            'format': '%(levelname)s %(asctime)s %(pathname)s %(filename)s %(module)s %(funcName)s %(lineno)d: %(message)s'
-        },  # 对日志信息进行格式化，每个字段对应了日志格式中的一个字段
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'standard'
-        },
-        'file_handler': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': 'D:\zhourui\program\python\log\iuip_log.log',
-            # you use settings.py to specify the logging configuration, and you are running django development server,
-            # run it with “–noreload” option may help
-
-            # python manage.py runserver --noreload
-
-            # The reason is that by default, two processes of Django servers are running. One is the actual server,
-            # while the other is to detect changes in the code and reload the server. Therefore, settings.py is imported
-            #  twice, and consequently the two processes are accessing the log file at the same time.
-            'formatter': 'standard'
-        },  # 用于文件输出
-        'console': {
-            'level': 'INFO',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'standard'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file_handler', 'console'],
-            'level': 'DEBUG',
-            'propagate': True  # 是否继承父类的log信息
-        },  # handlers 来自于上面的 handlers 定义的内容
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
-    }
-}
-
 quartz_apscheduler_job_stroe_url = 'mysql://root:123456@localhost/quartz_apscheduler_job'
 
 

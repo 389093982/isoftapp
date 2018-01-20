@@ -2,7 +2,7 @@
 from django.conf.urls import url
 
 from resources.views import client_list, loadClientsData, resources_list, loadResourcesData, connectionTest, \
-    queryResourceByName
+    queryResourceByName, updateResourceByClient
 
 urlpatterns = [
     url(r'^client_list/', client_list),
@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^loadResourcesData/', loadResourcesData),
     url(r'^connectionTest/', connectionTest),
     url(r'^queryResourceByName/', queryResourceByName),
+    url(r'^updateResourceByClient/', updateResourceByClient),
 ]
