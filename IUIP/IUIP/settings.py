@@ -138,6 +138,8 @@ STATICFILES_DIRS = (
 
 quartz_apscheduler_job_stroe_url = 'mysql://root:123456@localhost/quartz_apscheduler_job'
 
+UPLOAD_DIR = r'D:\zhourui\program\python\upload'
+
 
 
 
