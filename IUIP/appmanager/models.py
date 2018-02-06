@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 
 class AppId(models.Model):
-    app_id = models.CharField(max_length=50, unique=True)
-    app_name = models.CharField(max_length=50, unique=True)
+    app_id = models.CharField(max_length=50)
+    app_name = models.CharField(max_length=50)
     app_owner = models.CharField(max_length=30)
     created_by = models.CharField(max_length=30)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -18,7 +18,7 @@ class AppId(models.Model):
 class Projects(models.Model):
     project_id = models.CharField(max_length=50, unique=True)
     project_name = models.CharField(max_length=50, unique=True)
-    project_appid = models.ForeignKey(AppId)
+    appid = models.ForeignKey(AppId)
     created_by = models.CharField(max_length=30)
     created_date = models.DateTimeField(auto_now_add=True)
     last_updated_by = models.CharField(max_length=30)

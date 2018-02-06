@@ -4,13 +4,6 @@ from django.forms import ModelForm
 
 from appmanager.models import AppId
 
-class AppIdUpdateForm(ModelForm):
-    class Meta:
-        model = AppId
-        fields = ('app_owner','created_by')
-
-    app_owner = forms.CharField(error_messages={'required':u'app_owner 不能为空'})
-    created_by = forms.CharField(error_messages={'required':u'created_by 不能为空'})
 
 class AppIdForm(ModelForm):
     class Meta:
@@ -26,12 +19,12 @@ class AppIdForm(ModelForm):
         cleaned_data = super(AppIdForm,self).clean()
         app_id_data = cleaned_data.get('app_id')
         app_name_data = cleaned_data.get('app_name')
-        if AppId.objects.filter(app_id=app_id_data).count() is not 0:
-            msg = u'app_id已经存在!'
+
+        if app_id_data.strip() != app_name_data.strip():
+            msg = u'app_id 必须与 app_name 保持一致!'
             self._errors['app_id'] = self.error_class([msg])
             del cleaned_data['app_id']
-        if AppId.objects.filter(app_name=app_name_data).count() is not 0:
-            msg = u'app_name已经存在!'
+            msg = u'app_name 必须与 app_id 保持一致!'
             self._errors['app_name'] = self.error_class([msg])
             del cleaned_data['app_name']
         return cleaned_data

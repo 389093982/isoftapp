@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from appmanager.forms import AppIdForm, AppIdUpdateForm
+from appmanager.forms import AppIdForm
 from appmanager.models import AppId, Projects
 
 @csrf_exempt
@@ -84,22 +84,6 @@ def appid_delete(request):
         response_data['msg'] = '删除失败!'
     return HttpResponse(json.dumps(response_data))
 
-def appid_edit(request):
-    if request.method == 'GET':
-        app_id = request.GET.get('app_id')
-        obj = AppId.objects.filter(app_id=app_id).first()
-        form = AppIdForm(instance=obj)
-    else:
-        form = AppIdUpdateForm(request.POST)
-        if form.is_valid():
-            app_id = request.POST.get('app_id')
-            app_name = request.POST.get('app_name')
-            app_owner = request.POST.get('app_owner')
-            created_by = request.POST.get('created_by')
-            AppId.objects.filter(app_id=app_id).update(app_name=app_name, app_owner=app_owner, created_by=created_by)
-            return render(request, 'appmanager/appid_list.html')
-    return render(request, 'appmanager/appid_add.html', {'form': form, 'edit':'true'})
-
 @csrf_exempt
 def loadAppIdsData(request):
     if request.method == "POST":
@@ -148,24 +132,43 @@ def loadAppIdsData(request):
 def appid_list(request):
     return render(request,'appmanager/appid_list.html')
 
-def appid_add(request):
-    if request.method == 'POST':
-        form = AppIdForm(request.POST)
-        if form.is_valid():
-            # 获取表单信息
-            app_id = form.cleaned_data['app_id']
-            app_name = form.cleaned_data['app_name']
-            app_owner = form.cleaned_data['app_owner']
-            created_by = form.cleaned_data['created_by']
-            # 将表单写入数据库
-            appid = AppId()
-            appid.app_id = app_id
-            appid.app_name = app_name
-            appid.app_owner = app_owner
-            appid.created_by = created_by
-            appid.last_updated_by = created_by
-            appid.save()
-            return HttpResponseRedirect('/appmanager/appid_list/')
+def appid_edit(request):
+    '''
+        get 请求：
+            无 app_id 表示新增
+            有 app_id 表示修改
+        post 请求：
+            无 edit 标识表示提交
+            有 edit 标识表示更新
+    '''
+    if request.method == 'GET':
+        app_id = request.GET.get('app_id')
+        if app_id:
+            obj = AppId.objects.filter(app_id=app_id).first()
+            form = AppIdForm(instance=obj)
+            return render(request, 'appmanager/appid_edit.html', {'form': form, 'edit': 'edit'})
+        else:
+            form = AppIdForm()
+            return render(request, 'appmanager/appid_edit.html', {'form': form})
     else:
-        form = AppIdForm()
-    return render(request,'appmanager/appid_add.html',{'form':form})
+        if request.POST.get('submit') == 'cancel':
+            return HttpResponseRedirect('/appmanager/appid_list/')
+        else:
+            form = AppIdForm(request.POST)
+            if form.is_valid():
+                # 获取表单信息
+                app_id = form.cleaned_data['app_id']
+                app_name = form.cleaned_data['app_name']
+                app_owner = form.cleaned_data['app_owner']
+                created_by = form.cleaned_data['created_by']
+                # 将表单写入数据库
+                AppId.objects.update_or_create(app_id=app_id, app_name=app_name, defaults={
+                    'app_owner': app_owner, 'created_by': created_by, 'last_updated_by': created_by
+                })
+                return HttpResponseRedirect('/appmanager/appid_list/')
+            else:
+                if request.POST.get('edit'):
+                    return render(request, 'appmanager/appid_edit.html', {'form': form, 'edit': 'edit'})
+                else:
+                    return render(request, 'appmanager/appid_edit.html', {'form': form})
+

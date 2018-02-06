@@ -74,7 +74,7 @@ function bindHrefEvent(){
 }
 
 function operateFormatter(val,row,index){
-    var html = '<a href="/appmanager/appid_add/">添加</a>&nbsp;'
+    var html = '<a href="/appmanager/appid_edit/">添加</a>&nbsp;'
              + '<a href="/appmanager/appid_edit/?app_id=' + row.app_id + '">编辑</a>&nbsp;'
              + '<a href="#" title="/appmanager/appid_delete/?app_id=' + row.app_id + '" onclick="appid_delete(this)">删除</a>';
     return html;
