@@ -13,9 +13,8 @@
         <div>
             <form id="formSearch">
                 {% csrf_token %}
-                project_id: <input class="easyui-textbox" style="width:100px;" name="project_id">
                 project_name: <input class="easyui-textbox" style="width:100px;" name="project_name">
-                project_appid: <input class="easyui-textbox" style="width:100px;" name="project_appid">
+                app_id: <input class="easyui-textbox" style="width:100px;" name="app_id">
                 <a href="#" class="easyui-linkbutton" iconCls="icon-search" id="btn_query">提交</a>
                 <a href="#" class="easyui-linkbutton" iconCls="icon-search" id="btn_reset">重置</a>
             </form>

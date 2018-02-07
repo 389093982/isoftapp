@@ -7,8 +7,34 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from appmanager.forms import AppIdForm
+from appmanager.forms import AppIdForm, ProjectForm
 from appmanager.models import AppId, Projects
+
+def project_delete(request):
+    response_data = {}
+    try:
+        id = request.GET.get('id')
+        Projects.objects.filter(id=id).delete()
+        response_data['status'] = 'SUCCESS'
+        response_data['msg'] = '删除成功!'
+    except Exception as e:
+        response_data['status'] = 'ERROR'
+        response_data['msg'] = str(e)
+    return HttpResponse(json.dumps(response_data))
+
+
+def projects_add(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            app_id = AppId.objects.filter(id=request.POST.get('app_id')).first()
+            project = Projects(project_name=form.cleaned_data['project_name'],created_by=form.cleaned_data['created_by'],
+                               last_updated_by=form.cleaned_data['last_updated_by'],app_id=app_id)
+            project.save()
+            return HttpResponseRedirect('/appmanager/projects_list/')
+    else:
+        form = ProjectForm()
+    return render(request, 'appmanager/projects_add.html', {'form': form})
 
 @csrf_exempt
 def loadProjectsData(request):
@@ -18,30 +44,26 @@ def loadProjectsData(request):
         search = request.POST.get('search')
         sort_column = request.POST.get('sortName')
         order = request.POST.get('sortOrder')
-        project_id = request.POST.get('project_id')
         project_name = request.POST.get('project_name')
-        project_appid = request.POST.get('project_appid')
+        app_id = request.POST.get('app_id')
         if search:
-            all_records = Projects.objects.filter(Q(project_id__icontains=search)
-                                               | Q(project_name__icontains=search) | Q(project_appid__app_name__icontains=search))
+            all_records = Projects.objects.filter(Q(project_name__icontains=search) | Q(project_appid__app_name__icontains=search))
         else:
             all_records = Projects.objects.all()
         if sort_column:
-            if sort_column in ['project_id', 'project_name', 'project_appid']:
+            if sort_column in ['project_name', 'app_id']:
                 if order == 'desc':
                     sort_column = '-%s' % (sort_column)
                 all_records = all_records.order_by(sort_column)
 
-        if project_id:
-            all_records = all_records.filter(project_id__icontains=project_id)
         if project_name:
             all_records = all_records.filter(project_name__icontains=project_name)
-        if project_appid:
+        if app_id:
             # 方法一、首先获得外键指向的表中对象，然后通过'_set'这样的方法获得目标表中的数据
-            # obj = AppId.objects.get(app_id = project_appid)
+            # obj = AppId.objects.get(app_id = app_id)
             # all_records = obj.projects_set.all()
             # 方法二、直接在目标表中通过双下划线来指定外键对应表中的域来查找符合条件的对象
-            all_records = all_records.filter(project_appid__app_id__icontains=project_appid)
+            all_records = all_records.filter(app_id__app_id__icontains=app_id)
 
         all_records_count = all_records.count()
 
@@ -55,9 +77,9 @@ def loadProjectsData(request):
         response_data = {'total': all_records_count, 'rows': []}
         for project in pageinator.page(page):
             response_data['rows'].append({
-                "project_id": project.project_id if project.project_id else "",
+                "id": project.id if project.id else "",
                 "project_name": project.project_name if project.project_name else "",
-                "project_appid": project.project_appid.app_id if project.project_appid.app_id else "",
+                "app_id": project.app_id.app_id if project.app_id.app_id else "",
                 "created_by": project.created_by if project.created_by else "",
                 "created_date": project.created_date.strftime('%Y-%m-%d %H:%M') if project.created_date else "",
                 "last_updated_by": project.last_updated_by if project.last_updated_by else "",

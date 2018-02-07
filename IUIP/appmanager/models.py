@@ -16,9 +16,8 @@ class AppId(models.Model):
         return self.app_name
 
 class Projects(models.Model):
-    project_id = models.CharField(max_length=50, unique=True)
     project_name = models.CharField(max_length=50, unique=True)
-    appid = models.ForeignKey(AppId)
+    app_id = models.ForeignKey(AppId)
     created_by = models.CharField(max_length=30)
     created_date = models.DateTimeField(auto_now_add=True)
     last_updated_by = models.CharField(max_length=30)
