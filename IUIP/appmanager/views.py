@@ -88,9 +88,13 @@ def loadProjectsData(request):
     return HttpResponse(json.dumps(response_data))
 
 def projects_list(request):
+    '''
+    return_url：其它操作需要选择项目信息时,点击项目名称跳回的请求地址
+    '''
     if request.method == 'GET':
-        app_id = request.GET.get('app_id','')
-        return render(request,'appmanager/projects_list.html',{'app_id': app_id })
+        app_id = request.GET.get('app_id',None)
+        return_url = request.GET.get('return_url')
+        return render(request,'appmanager/projects_list.html',{'app_id': app_id, 'return_url':return_url })
     return render(request, 'appmanager/projects_list.html')
 
 def appid_delete(request):

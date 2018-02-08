@@ -7,8 +7,9 @@
     <script src="{% static 'appmanager/js/projects_list.js' %}"></script>
 {% endblock %}
 {% block center %}
-    <table id="projects-table" data-options="toolbar:'#tb'"></table>
+    <input name="return_url" value="{{ return_url }}" type="hidden"/>
 
+    <table id="projects-table" data-options="toolbar:'#tb'"></table>
     <div id="tb" style="padding:5px;height:auto">
         <div>
             <form id="formSearch">
@@ -21,8 +22,6 @@
         </div>
     </div>
 {% endblock %}
-
-
 
 
 

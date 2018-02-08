@@ -20,7 +20,8 @@ $(function(){
             field:"project_name",
             title:"project_name",
             width:100,
-            sortable:true
+            sortable:true,
+            formatter:projectNameFormatter
         },{
             field:"app_id",
             title:"app_id",
@@ -72,6 +73,22 @@ function bindHrefEvent(){
     });
 }
 
+function projectNameFormatter(val,row,index){
+    var href = "";
+    var return_url = $("input[name='return_url']").val();
+    if(isNotBlankStr(return_url)){
+        var params = "app_name=" + row.app_id + "&project_name=" + row.project_name;
+        if(return_url.indexOf("?") > 0){
+            href = return_url + "&" + params;
+        }else{
+            href = return_url + "?" + params;
+        }
+    }else{
+        href="#";
+    }
+    return "<a href='" + href + "'>" + val + "</a>";
+}
+
 function operateFormatter(val,row,index){
     var html = '<a href="/appmanager/project_add/">添加</a>&nbsp;'
              + '<a href="/appmanager/project_edit/?id=' + row.id + '">编辑</a>&nbsp;'
@@ -99,4 +116,11 @@ function project_delete(aNode){
             });
         }
     });
+}
+
+function isNotBlankStr(str){
+    if(str != undefined && str != "" && str != null && $.trim(str) != ""){
+        return true;
+    }
+    return false;
 }
